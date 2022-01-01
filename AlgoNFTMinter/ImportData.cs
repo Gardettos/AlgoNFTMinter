@@ -71,27 +71,13 @@ namespace AlgoNFTMinter
         private void btnGetData_Click(object sender, EventArgs e)
         {
             var results = Program.db.RetrieveData(dbSP.GetAllData);
-
-            foreach (var r in results)
-            {
-                StringBuilder sb = new StringBuilder();
-                sb.Append(String.Format("{0}, {1}, {2}, {3}, {4}, {5}",
-                                            r.Name.ToString(),
-                                            r.UnitName.ToString(),
-                                            r.Total.ToString(),
-                                            r.Decimals.ToString(),
-                                            r.URL.ToString(),
-                                            r.MetaDataHash.ToString()));
-                listBox.Items.Add(sb);
-            }
+            dgMain.DataSource = results;
+           
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             Program.db.TruncateTable();
-
-            listBox.Items.Clear();
-
 
         }
     }
