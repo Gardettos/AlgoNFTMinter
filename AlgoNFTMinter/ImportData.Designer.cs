@@ -30,14 +30,16 @@ namespace AlgoNFTMinter
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGetData = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
             this.btnImport = new System.Windows.Forms.Button();
-            this.btnGetData = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.btnGetData);
             this.panel1.Controls.Add(this.listBox);
             this.panel1.Controls.Add(this.btnImport);
@@ -45,6 +47,16 @@ namespace AlgoNFTMinter
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(559, 301);
             this.panel1.TabIndex = 0;
+            // 
+            // btnGetData
+            // 
+            this.btnGetData.Location = new System.Drawing.Point(141, 39);
+            this.btnGetData.Name = "btnGetData";
+            this.btnGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnGetData.TabIndex = 2;
+            this.btnGetData.Text = "Get Data";
+            this.btnGetData.UseVisualStyleBackColor = true;
+            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
             // listBox
             // 
@@ -65,15 +77,15 @@ namespace AlgoNFTMinter
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // btnGetData
+            // btnClear
             // 
-            this.btnGetData.Location = new System.Drawing.Point(141, 39);
-            this.btnGetData.Name = "btnGetData";
-            this.btnGetData.Size = new System.Drawing.Size(75, 23);
-            this.btnGetData.TabIndex = 2;
-            this.btnGetData.Text = "Get Data";
-            this.btnGetData.UseVisualStyleBackColor = true;
-            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
+            this.btnClear.Location = new System.Drawing.Point(238, 38);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(86, 24);
+            this.btnClear.TabIndex = 3;
+            this.btnClear.Text = "Clear Tables";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // ImportData
             // 
@@ -93,5 +105,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.Button btnGetData;
+        private System.Windows.Forms.Button btnClear;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AlgoNFTMinter.DBTools;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +70,7 @@ namespace AlgoNFTMinter
 
         private void btnGetData_Click(object sender, EventArgs e)
         {
-            var results = Program.db.RetrieveData("SELECT * FROM AssetData");
+            var results = Program.db.RetrieveData(dbSP.GetAllData);
 
             foreach (var r in results)
             {
@@ -83,6 +84,15 @@ namespace AlgoNFTMinter
                                             r.MetaDataHash.ToString()));
                 listBox.Items.Add(sb);
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Program.db.TruncateTable();
+
+            listBox.Items.Clear();
+
+
         }
     }
 }
