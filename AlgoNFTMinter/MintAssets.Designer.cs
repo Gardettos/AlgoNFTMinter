@@ -31,13 +31,11 @@ namespace AlgoNFTMinter
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnMint = new System.Windows.Forms.Button();
-            this.btnInitialize = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnInitialize);
             this.panel1.Controls.Add(this.btnMint);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -53,16 +51,6 @@ namespace AlgoNFTMinter
             this.btnMint.Text = "Mint";
             this.btnMint.UseVisualStyleBackColor = true;
             this.btnMint.Click += new System.EventHandler(this.btnMint_Click);
-            // 
-            // btnInitialize
-            // 
-            this.btnInitialize.Location = new System.Drawing.Point(47, 40);
-            this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(82, 39);
-            this.btnInitialize.TabIndex = 1;
-            this.btnInitialize.Text = "Initialize Connections";
-            this.btnInitialize.UseVisualStyleBackColor = true;
-            this.btnInitialize.Click += new System.EventHandler(this.btnInitialize_Click);
             // 
             // MintAssets
             // 
@@ -80,6 +68,5 @@ namespace AlgoNFTMinter
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnMint;
-        private System.Windows.Forms.Button btnInitialize;
     }
 }

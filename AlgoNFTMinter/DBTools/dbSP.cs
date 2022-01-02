@@ -13,7 +13,7 @@ namespace AlgoNFTMinter.DBTools
             get => spGetAllData;
         }
 
-        private const string spGetAssetsToMint = "SELECT * FROM AssetData WHERE mintAssetFlag = False;";
+        private const string spGetAssetsToMint = "SELECT * FROM AssetData WHERE mintAssetFlag = True;";
         public static string GetAssetsToMint
         {
             get => spGetAssetsToMint;
