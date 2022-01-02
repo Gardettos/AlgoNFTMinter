@@ -14,23 +14,19 @@ namespace AlgoNFTMinter
 {
     public partial class ImportData : UserControl
     {
-        IConfiguration config;
-      
-
+ 
         public ImportData()
         {
             InitializeComponent();
-            config = new ConfigurationBuilder()
-              .AddJsonFile("appsettings.json", true, true)
-              .Build();
+ 
         }
 
         private void btnImport_Click(object sender, EventArgs e)
         {
 
-            if (File.Exists(config["csvPath"]))
+            if (File.Exists(Program.config["csvPath"]))
             {
-                ImportCSVFile(config["csvPath"]);
+                ImportCSVFile(Program.config["csvPath"]);
                             
             }
             else

@@ -29,5 +29,11 @@ namespace AlgoNFTMinter.DBTools
 
         [Column("metaDataHash")]
         public string MetaDataHash { get; set; }
+
+        [Column("mintAssetFlag")]
+        public bool MintAssetFlag { get; set; } = false;
+
+        [Column("assetId")]
+        public string AssetID { get; set; }
     }
 }

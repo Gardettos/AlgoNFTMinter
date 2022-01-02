@@ -23,6 +23,11 @@ namespace AlgoNFTMinter.DBTools
             _db.Insert(data);
         }
 
+        public void UpdateRecord(AssetData data)
+        {
+            _db.Update(data);
+        }
+
         public void TruncateTable()
         {
             _db.DeleteAll<AssetData>();
@@ -30,6 +35,7 @@ namespace AlgoNFTMinter.DBTools
 
         public List<AssetData> RetrieveData(String sqlString)
         {
+            //var query = conn.Table<Stock>().Where(v => v.Symbol.StartsWith("A"));
             return _db.Query<DBTools.AssetData>(sqlString);           
         }
 
