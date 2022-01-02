@@ -15,28 +15,33 @@ namespace AlgoNFTMinter.DBTools
         {
             var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyData.db");
             _db = new SQLiteConnection(databasePath);
-            _db.CreateTable<AssetData>();
+            _db.CreateTable<NewAssetData>();
         }
 
-        public void AddRecord(AssetData data)
+        public void AddRecord(NewAssetData data)
         {
             _db.Insert(data);
         }
 
-        public void UpdateRecord(AssetData data)
+        public void UpdateRecord(NewAssetData data)
         {
             _db.Update(data);
         }
 
         public void TruncateTable()
         {
-            _db.DeleteAll<AssetData>();
+            _db.DeleteAll<NewAssetData>();
         }
 
-        public List<AssetData> RetrieveData(String sqlString)
+        public void DropTable(String tableName)
+        {
+            _db.Execute(String.Format(dbSP.DropTable, tableName));
+        }
+
+        public List<NewAssetData> RetrieveData(String sqlString)
         {
             //var query = conn.Table<Stock>().Where(v => v.Symbol.StartsWith("A"));
-            return _db.Query<DBTools.AssetData>(sqlString);           
+            return _db.Query<DBTools.NewAssetData>(sqlString);           
         }
 
         //public void DeleteRecord(string id)

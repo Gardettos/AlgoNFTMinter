@@ -5,8 +5,8 @@ using System.Text;
 
 namespace AlgoNFTMinter.DBTools
 {
-    [Table("AssetData")]
-    class AssetData
+    [Table("NewAssetData")]
+    class NewAssetData
     {
         [PrimaryKey, AutoIncrement]
         [Column("id")]

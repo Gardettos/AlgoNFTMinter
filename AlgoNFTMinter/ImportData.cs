@@ -48,7 +48,7 @@ namespace AlgoNFTMinter
                 {
                     List<string> lineValues = line.Split(',').ToList();
 
-                    var Asset = new DBTools.AssetData
+                    var Asset = new DBTools.NewAssetData
                     {
                         Name = lineValues[0].ToString(),
                         UnitName = lineValues[1].ToString(),

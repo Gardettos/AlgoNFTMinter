@@ -41,7 +41,7 @@ namespace AlgoNFTMinter
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = Program.config["ALGOD_API_ADDR"] };
 
                 var transParams = await algodApiInstance.ParamsAsync();
-                foreach (AssetData a in results)
+                foreach (NewAssetData a in results)
                 {
                     var ap = new AssetParams()
                     {
@@ -77,7 +77,7 @@ namespace AlgoNFTMinter
                    
                 }
 
-                foreach (AssetData a in results)
+                foreach (NewAssetData a in results)
                     Program.db.UpdateRecord(a);
 
 
