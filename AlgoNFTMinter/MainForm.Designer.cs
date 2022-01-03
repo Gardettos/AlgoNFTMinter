@@ -37,9 +37,9 @@ namespace AlgoNFTMinter
             // 
             // panelMain
             // 
-            this.panelMain.Location = new System.Drawing.Point(0, 27);
+            this.panelMain.Location = new System.Drawing.Point(0, 24);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(800, 425);
+            this.panelMain.Size = new System.Drawing.Size(800, 426);
             this.panelMain.TabIndex = 1;
             // 
             // menuStrip
