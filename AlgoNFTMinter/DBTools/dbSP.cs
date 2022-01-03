@@ -25,7 +25,7 @@ namespace AlgoNFTMinter.DBTools
             get => spDropTable;
         }
 
-        private const string spUpdateMintStatus = "UPDATE NewAssetData SET mintAssetFlag = True;";
+        private const string spUpdateMintStatus = "UPDATE NewAssetData SET mintAssetFlag = ? WHERE Id = ?;";
         public static string UpdateMintStatus
         {
             get => spUpdateMintStatus;

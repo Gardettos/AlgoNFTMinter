@@ -32,7 +32,6 @@ namespace AlgoNFTMinter
             this.btnClear = new System.Windows.Forms.Button();
             this.btnGetData = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnMint = new System.Windows.Forms.Button();
             this.dgMain = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,16 +71,6 @@ namespace AlgoNFTMinter
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // btnSelectAll
-            // 
-            this.btnSelectAll.Location = new System.Drawing.Point(347, 16);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(94, 46);
-            this.btnSelectAll.TabIndex = 1;
-            this.btnSelectAll.Text = "Select All Assets";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
-            // 
             // btnMint
             // 
             this.btnMint.Location = new System.Drawing.Point(447, 38);
@@ -102,6 +91,7 @@ namespace AlgoNFTMinter
             this.dgMain.RowTemplate.Height = 25;
             this.dgMain.Size = new System.Drawing.Size(800, 354);
             this.dgMain.TabIndex = 5;
+            this.dgMain.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMain_CellValueChanged);
             // 
             // panel1
             // 
@@ -118,7 +108,7 @@ namespace AlgoNFTMinter
             // 
             this.radioTest.AutoSize = true;
             this.radioTest.Checked = true;
-            this.radioTest.Location = new System.Drawing.Point(610, 16);
+            this.radioTest.Location = new System.Drawing.Point(660, 11);
             this.radioTest.Name = "radioTest";
             this.radioTest.Size = new System.Drawing.Size(67, 19);
             this.radioTest.TabIndex = 9;
@@ -129,7 +119,7 @@ namespace AlgoNFTMinter
             // radioMain
             // 
             this.radioMain.AutoSize = true;
-            this.radioMain.Location = new System.Drawing.Point(610, 42);
+            this.radioMain.Location = new System.Drawing.Point(660, 37);
             this.radioMain.Name = "radioMain";
             this.radioMain.Size = new System.Drawing.Size(74, 19);
             this.radioMain.TabIndex = 10;
@@ -145,7 +135,6 @@ namespace AlgoNFTMinter
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnGetData);
-            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnMint);
             this.Name = "MintAssets";
@@ -159,7 +148,6 @@ namespace AlgoNFTMinter
 
         #endregion
         private System.Windows.Forms.Button btnMint;
-        private System.Windows.Forms.Button btnSelectAll;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnGetData;
         private System.Windows.Forms.Button btnImport;

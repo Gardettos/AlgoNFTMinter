@@ -24,7 +24,6 @@ namespace AlgoNFTMinter
     public partial class MintAssets : UserControl
     {
         string ALGOD_API_ADDR;
-
         public MintAssets()
         {
             InitializeComponent();     
@@ -81,11 +80,6 @@ namespace AlgoNFTMinter
                     Program.db.UpdateRecord(a);
 
             }
-        }
-
-        private void btnSelectAll_Click(object sender, EventArgs e)
-        {
-            Program.db.RunQuery(dbSP.UpdateMintStatus);
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -147,6 +141,29 @@ namespace AlgoNFTMinter
         {
             if (radioTest.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_TEST"];
             else if (radioMain.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_MAIN"];
+        }
+
+        private void dgMain_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgMain.Columns[e.ColumnIndex].Name == "MintAssetFlag")
+                {
+                string status = ""; //DB stores booleans as 0/1
+                switch (dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.ToString())
+                {
+                    case "False":
+                        status = "0";
+                        break;
+                    case "True":
+                        status = "1";
+                        break;
+                }
+
+                var x = dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                Program.db.RunQuery(dbSP.UpdateMintStatus,
+                    status,
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+            }
+           
         }
     }
 }

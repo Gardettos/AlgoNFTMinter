@@ -18,9 +18,11 @@ namespace AlgoNFTMinter.DBTools
             _db.CreateTable<NewAssetData>();
         }
 
-        public void RunQuery(String query)
+        public void RunQuery(String query, string paramOne = "", string paramTwo = "")
         {
-            _db.Execute(query);
+            if (!paramOne.Equals("") && paramOne.Equals("")) _db.Execute(query, paramOne);
+            else if(!paramOne.Equals("") && !paramOne.Equals("")) _db.Execute(query, paramOne, paramTwo);
+            else _db.Execute(query);
         }
 
         public void AddRecord(NewAssetData data)
