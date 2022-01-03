@@ -18,6 +18,11 @@ namespace AlgoNFTMinter.DBTools
             _db.CreateTable<NewAssetData>();
         }
 
+        public void RunQuery(String query)
+        {
+            _db.Execute(query);
+        }
+
         public void AddRecord(NewAssetData data)
         {
             _db.Insert(data);

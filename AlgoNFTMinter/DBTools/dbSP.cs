@@ -25,5 +25,10 @@ namespace AlgoNFTMinter.DBTools
             get => spDropTable;
         }
 
+        private const string spUpdateMintStatus = "UPDATE NewAssetData SET mintAssetFlag = True;";
+        public static string UpdateMintStatus
+        {
+            get => spUpdateMintStatus;
+        }
     }
 }

@@ -40,6 +40,10 @@ namespace AlgoNFTMinter
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(Program.config["ALGOD_API_ADDR"], Program.config["ALGOD_API_TOKEN"]);
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = Program.config["ALGOD_API_ADDR"] };
 
+
+                var accountInfo = await algodApiInstance.AccountsAsync(acct1.Address.ToString(), null);
+                Console.WriteLine(string.Format("Account Balance: {0} microAlgos", accountInfo.Amount));
+
                 var transParams = await algodApiInstance.ParamsAsync();
                 foreach (NewAssetData a in results)
                 {
@@ -50,11 +54,10 @@ namespace AlgoNFTMinter
                         UnitName = a.UnitName,
                         DefaultFrozen = false,
                         Total = (ulong?)Convert.ToInt64(a.Total),
-                        Decimals =  (int) Convert.ToInt64(a.Decimals),
+                        Decimals = (int)Convert.ToInt64(a.Decimals),
                         Url = a.URL,
-                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash)                   
+                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash)
                     };
-
 
                     var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
                     SignedTransaction signedTx = acct1.SignTransaction(tx);
@@ -69,7 +72,7 @@ namespace AlgoNFTMinter
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine(ex.StackTrace);
+                        Console.WriteLine(ex.StackTrace); //Throw error issue sending tran to network
                     }
 
                     
@@ -84,5 +87,9 @@ namespace AlgoNFTMinter
             }
         }
 
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateMintStatus);
+        }
     }
 }
