@@ -19,7 +19,7 @@ namespace AlgoNFTMinter.DBTools
         public string Decimals { get; set; }
 
         [Column("defaultFrozen")]
-        public string DefaultFrozen { get; set; }
+        public bool DefaultFrozen { get; set; }
 
         [Column("freeze")]
         public string Freeze { get; set; }

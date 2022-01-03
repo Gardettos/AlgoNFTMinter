@@ -40,23 +40,23 @@ namespace AlgoNFTMinter
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(Program.config["ALGOD_API_ADDR"], Program.config["ALGOD_API_TOKEN"]);
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = Program.config["ALGOD_API_ADDR"] };
 
-
-                var accountInfo = await algodApiInstance.AccountsAsync(acct1.Address.ToString(), null);
-                Console.WriteLine(string.Format("Account Balance: {0} microAlgos", accountInfo.Amount));
-
                 var transParams = await algodApiInstance.ParamsAsync();
                 foreach (NewAssetData a in results)
                 {
                     var ap = new AssetParams()
                     {
+                        //Clawback = a.Clawback,
                         Creator = acct1.Address.ToString(),
-                        Name = a.Name,
-                        UnitName = a.UnitName,
-                        DefaultFrozen = false,
-                        Total = (ulong?)Convert.ToInt64(a.Total),
                         Decimals = (int)Convert.ToInt64(a.Decimals),
-                        Url = a.URL,
-                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash)
+                        DefaultFrozen = a.DefaultFrozen,
+                        //Freeze = a.Freeze,
+                        //Manager = a.Manager,
+                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash),
+                        Name = a.Name,
+                        //Reserve = a.Reserve,
+                        Total = (ulong?)Convert.ToInt64(a.Total),
+                        UnitName = a.UnitName,                                                           
+                        Url = a.URL,                       
                     };
 
                     var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
@@ -71,18 +71,12 @@ namespace AlgoNFTMinter
                     }
                     catch (Exception ex)
                     {
-
-                        Console.WriteLine(ex.StackTrace); //Throw error issue sending tran to network
-                    }
-
-                    
-                   
-                   
+                        Console.WriteLine(ex.StackTrace); //TODO: Throw error issue sending tran to network
+                    }                                                       
                 }
-
+                //Update DB record with the new assetID
                 foreach (NewAssetData a in results)
                     Program.db.UpdateRecord(a);
-
 
             }
         }
@@ -97,13 +91,11 @@ namespace AlgoNFTMinter
             if (File.Exists(Program.config["csvPath"]))
             {       
                 ImportCSVFile(Program.config["csvPath"]);
-
             }
             else
             {
                 //throw error
                 MessageBox.Show("CSV File Missing");
-
             }
         }
 
@@ -133,14 +125,14 @@ namespace AlgoNFTMinter
                     var Asset = new DBTools.NewAssetData
                     {
                         Clawback = lineValues[0].ToString(),
-                        Decimals = lineValues[1].ToString(),
-                        DefaultFrozen = lineValues[2].ToString(),
+                        Decimals = lineValues[1],
+                        DefaultFrozen = Boolean.Parse(lineValues[2]),
                         Freeze = lineValues[3].ToString(),
                         Manager = lineValues[4].ToString(),
                         MetaDataHash = lineValues[5].ToString(),
                         Name = lineValues[6].ToString(),
                         Reserve = lineValues[7].ToString(),
-                        Total = lineValues[8].ToString(),
+                        Total = lineValues[8],
                         UnitName = lineValues[9].ToString(),
                         URL = lineValues[10].ToString()
                     };
