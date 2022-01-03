@@ -72,7 +72,7 @@ namespace AlgoNFTMinter
             // 
             // btnSelectAll
             // 
-            this.btnSelectAll.Location = new System.Drawing.Point(367, 20);
+            this.btnSelectAll.Location = new System.Drawing.Point(347, 16);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(94, 46);
             this.btnSelectAll.TabIndex = 1;
@@ -82,7 +82,7 @@ namespace AlgoNFTMinter
             // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(492, 32);
+            this.btnMint.Location = new System.Drawing.Point(447, 38);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;

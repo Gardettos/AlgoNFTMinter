@@ -31,7 +31,6 @@ namespace AlgoNFTMinter
 
         private async void btnMint_Click(object sender, EventArgs e)
         {
-           
             var results = Program.db.RetrieveData(dbSP.GetAssetsToMint);
             if (results.Count > 0)
             {
@@ -96,7 +95,7 @@ namespace AlgoNFTMinter
         private void btnImport_Click(object sender, EventArgs e)
         {
             if (File.Exists(Program.config["csvPath"]))
-            {
+            {       
                 ImportCSVFile(Program.config["csvPath"]);
 
             }
@@ -133,12 +132,17 @@ namespace AlgoNFTMinter
 
                     var Asset = new DBTools.NewAssetData
                     {
-                        Name = lineValues[0].ToString(),
-                        UnitName = lineValues[1].ToString(),
-                        Total = lineValues[2].ToString(),
-                        Decimals = lineValues[3].ToString(),
-                        URL = lineValues[4].ToString(),
-                        MetaDataHash = lineValues[5].ToString()
+                        Clawback = lineValues[0].ToString(),
+                        Decimals = lineValues[1].ToString(),
+                        DefaultFrozen = lineValues[2].ToString(),
+                        Freeze = lineValues[3].ToString(),
+                        Manager = lineValues[4].ToString(),
+                        MetaDataHash = lineValues[5].ToString(),
+                        Name = lineValues[6].ToString(),
+                        Reserve = lineValues[7].ToString(),
+                        Total = lineValues[8].ToString(),
+                        UnitName = lineValues[9].ToString(),
+                        URL = lineValues[10].ToString()
                     };
 
                     Program.db.AddRecord(Asset);
