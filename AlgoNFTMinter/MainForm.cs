@@ -22,11 +22,7 @@ namespace AlgoNFTMinter
         {
             panelMain.Controls.Clear();
 
-            if(e.ClickedItem.Text == "Import Data")
-            {
-                panelMain.Controls.Add(new ImportData());
-            }
-            else if (e.ClickedItem.Text == "Mint Assets")
+             if (e.ClickedItem.Text == "Mint Assets")
             {
                 panelMain.Controls.Add(new MintAssets());
             }

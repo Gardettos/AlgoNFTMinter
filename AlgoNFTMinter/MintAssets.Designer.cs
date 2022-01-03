@@ -30,13 +30,22 @@ namespace AlgoNFTMinter
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnMint = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
+            this.btnMint = new System.Windows.Forms.Button();
+            this.dgMain = new System.Windows.Forms.DataGridView();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnGetData = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnClear);
+            this.panel1.Controls.Add(this.btnGetData);
+            this.panel1.Controls.Add(this.btnImport);
+            this.panel1.Controls.Add(this.dgMain);
             this.panel1.Controls.Add(this.btnSelectAll);
             this.panel1.Controls.Add(this.btnMint);
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -44,9 +53,19 @@ namespace AlgoNFTMinter
             this.panel1.Size = new System.Drawing.Size(590, 311);
             this.panel1.TabIndex = 0;
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(362, 24);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(94, 46);
+            this.btnSelectAll.TabIndex = 1;
+            this.btnSelectAll.Text = "Select All Assets";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(155, 40);
+            this.btnMint.Location = new System.Drawing.Point(487, 36);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;
@@ -54,15 +73,45 @@ namespace AlgoNFTMinter
             this.btnMint.UseVisualStyleBackColor = true;
             this.btnMint.Click += new System.EventHandler(this.btnMint_Click);
             // 
-            // btnSelectAll
+            // dgMain
             // 
-            this.btnSelectAll.Location = new System.Drawing.Point(30, 40);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(94, 46);
-            this.btnSelectAll.TabIndex = 1;
-            this.btnSelectAll.Text = "Select All Assets";
-            this.btnSelectAll.UseVisualStyleBackColor = true;
-            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            this.dgMain.AllowUserToOrderColumns = true;
+            this.dgMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMain.Location = new System.Drawing.Point(2, 80);
+            this.dgMain.Name = "dgMain";
+            this.dgMain.RowTemplate.Height = 25;
+            this.dgMain.Size = new System.Drawing.Size(590, 231);
+            this.dgMain.TabIndex = 5;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(111, 42);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(86, 24);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Clear Tables";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnGetData
+            // 
+            this.btnGetData.Location = new System.Drawing.Point(111, 13);
+            this.btnGetData.Name = "btnGetData";
+            this.btnGetData.Size = new System.Drawing.Size(86, 23);
+            this.btnGetData.TabIndex = 7;
+            this.btnGetData.Text = "Get All Data";
+            this.btnGetData.UseVisualStyleBackColor = true;
+            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(21, 43);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.TabIndex = 6;
+            this.btnImport.Text = "Import CSV";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // MintAssets
             // 
@@ -72,6 +121,7 @@ namespace AlgoNFTMinter
             this.Name = "MintAssets";
             this.Size = new System.Drawing.Size(590, 311);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgMain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -81,5 +131,9 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnMint;
         private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.DataGridView dgMain;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnGetData;
+        private System.Windows.Forms.Button btnImport;
     }
 }

@@ -31,7 +31,6 @@ namespace AlgoNFTMinter
         {
             this.panelMain = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.tsMenuItemImportData = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMenuItemMintAssets = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -46,7 +45,6 @@ namespace AlgoNFTMinter
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsMenuItemImportData,
             this.tsMenuItemMintAssets});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -54,12 +52,6 @@ namespace AlgoNFTMinter
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
-            // 
-            // tsMenuItemImportData
-            // 
-            this.tsMenuItemImportData.Name = "tsMenuItemImportData";
-            this.tsMenuItemImportData.Size = new System.Drawing.Size(82, 20);
-            this.tsMenuItemImportData.Text = "Import Data";
             // 
             // tsMenuItemMintAssets
             // 
@@ -87,7 +79,6 @@ namespace AlgoNFTMinter
         #endregion
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem tsMenuItemImportData;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemMintAssets;
     }
 }
