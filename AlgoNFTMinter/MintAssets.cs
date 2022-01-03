@@ -23,6 +23,7 @@ namespace AlgoNFTMinter
 {
     public partial class MintAssets : UserControl
     {
+        string ALGOD_API_ADDR;
 
         public MintAssets()
         {
@@ -35,10 +36,11 @@ namespace AlgoNFTMinter
             if (results.Count > 0)
             {
                 //Initialize connections 
+                SetEnvironment();
                 string account1_mnemonic = Program.config["account1_mnemonic"];                         
                 Account acct1 = new Account(account1_mnemonic);
-                var httpClient = HttpClientConfigurator.ConfigureHttpClient(Program.config["ALGOD_API_ADDR"], Program.config["ALGOD_API_TOKEN"]);
-                var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = Program.config["ALGOD_API_ADDR"] };
+                var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
+                var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
 
                 var transParams = await algodApiInstance.ParamsAsync();
                 foreach (NewAssetData a in results)
@@ -110,8 +112,6 @@ namespace AlgoNFTMinter
             Program.db.TruncateTable();
         }
 
-
-
         private void ImportCSVFile(String filePath)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -143,5 +143,10 @@ namespace AlgoNFTMinter
             }
         }
 
+        private void SetEnvironment()
+        {
+            if (radioTest.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_TEST"];
+            else if (radioMain.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_MAIN"];
+        }
     }
 }

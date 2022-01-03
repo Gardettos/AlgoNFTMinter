@@ -36,6 +36,8 @@ namespace AlgoNFTMinter
             this.btnMint = new System.Windows.Forms.Button();
             this.dgMain = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radioTest = new System.Windows.Forms.RadioButton();
+            this.radioMain = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -112,10 +114,34 @@ namespace AlgoNFTMinter
             this.panel1.Size = new System.Drawing.Size(800, 354);
             this.panel1.TabIndex = 0;
             // 
+            // radioTest
+            // 
+            this.radioTest.AutoSize = true;
+            this.radioTest.Checked = true;
+            this.radioTest.Location = new System.Drawing.Point(610, 16);
+            this.radioTest.Name = "radioTest";
+            this.radioTest.Size = new System.Drawing.Size(67, 19);
+            this.radioTest.TabIndex = 9;
+            this.radioTest.TabStop = true;
+            this.radioTest.Text = "Test Net";
+            this.radioTest.UseVisualStyleBackColor = true;
+            // 
+            // radioMain
+            // 
+            this.radioMain.AutoSize = true;
+            this.radioMain.Location = new System.Drawing.Point(610, 42);
+            this.radioMain.Name = "radioMain";
+            this.radioMain.Size = new System.Drawing.Size(74, 19);
+            this.radioMain.TabIndex = 10;
+            this.radioMain.Text = "Main Net";
+            this.radioMain.UseVisualStyleBackColor = true;
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radioMain);
+            this.Controls.Add(this.radioTest);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnGetData);
@@ -127,6 +153,7 @@ namespace AlgoNFTMinter
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -138,5 +165,7 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.DataGridView dgMain;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radioTest;
+        private System.Windows.Forms.RadioButton radioMain;
     }
 }
