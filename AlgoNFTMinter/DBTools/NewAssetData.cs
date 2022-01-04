@@ -48,6 +48,9 @@ namespace AlgoNFTMinter.DBTools
         [Column("mintAssetFlag")]
         public bool MintAssetFlag { get; set; } = false;
 
+        [Column("optInFlag")]
+        public bool OptInFlag { get; set; } = false;
+
         [Column("assetId")]
         public string AssetID { get; set; }
 

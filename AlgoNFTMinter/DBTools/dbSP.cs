@@ -19,6 +19,12 @@ namespace AlgoNFTMinter.DBTools
             get => spGetAssetsToMint;
         }
 
+        private const string spGetAssetsToOptIn = "SELECT * FROM NewAssetData WHERE optInFlag = True;";
+        public static string GetAssetsToOptIn
+        {
+            get => spGetAssetsToOptIn;
+        }
+
         private const string spDropTable = "DROP TABLE {0}";
         public static string DropTable
         {
@@ -29,6 +35,12 @@ namespace AlgoNFTMinter.DBTools
         public static string UpdateMintStatus
         {
             get => spUpdateMintStatus;
+        }
+
+        private const string spUpdateOptInStatus = "UPDATE NewAssetData SET optInFlag = ? WHERE Id = ?;";
+        public static string UpdateOptInStatus
+        {
+            get => spUpdateOptInStatus;
         }
     }
 }

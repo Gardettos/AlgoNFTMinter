@@ -26,7 +26,7 @@ namespace AlgoNFTMinter
         string ALGOD_API_ADDR;
         public MintAssets()
         {
-            InitializeComponent();     
+            InitializeComponent();
         }
 
         private async void btnMint_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace AlgoNFTMinter
                         var id = await Utils.SubmitTransaction(algodApiInstance, signedTx);
                         var resp = await Utils.WaitTransactionToComplete(algodApiInstance, id.TxId);
                         var ptx = await algodApiInstance.PendingGetAsync(id.TxId, null);
-                        a.AssetID = ptx.AssetIndex.ToString();
+                        a.AssetID =  ptx.AssetIndex.ToString();
                     }
                     catch (Exception ex)
                     {
@@ -148,22 +148,75 @@ namespace AlgoNFTMinter
             if (dgMain.Columns[e.ColumnIndex].Name == "MintAssetFlag")
                 {
                 string status = ""; //DB stores booleans as 0/1
-                switch (dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.ToString())
+                switch (dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value)
                 {
-                    case "False":
+                    case false:
                         status = "0";
                         break;
-                    case "True":
+                    case true:
                         status = "1";
                         break;
                 }
 
-                var x = dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString();
                 Program.db.RunQuery(dbSP.UpdateMintStatus,
                     status,
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
             }
-           
+
+            else if (dgMain.Columns[e.ColumnIndex].Name == "OptInFlag")
+            {
+                string status = ""; //DB stores booleans as 0/1
+                switch (dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value)
+                {
+                    case false:
+                        status = "0";
+                        break;
+                    case true:
+                        status = "1";
+                        break;
+                }
+
+                Program.db.RunQuery(dbSP.UpdateOptInStatus,
+                    status,
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+            }
+
+        }
+
+        private async void btnOptIn_ClickAsync(object sender, EventArgs e)
+        {
+
+            var results = Program.db.RetrieveData(dbSP.GetAssetsToOptIn);
+            if (results.Count > 0)
+            {
+                //Initialize connections 
+                SetEnvironment();
+                string account2_mnemonic = Program.config["account2_mnemonic"];
+                Account acct2 = new Account(account2_mnemonic);
+                var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
+                var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
+                var transParams = await algodApiInstance.ParamsAsync();
+                foreach (NewAssetData a in results)
+                {
+                    var tx = Utils.GetAssetOptingInTransaction(acct2.Address, ulong.Parse(a.AssetID), transParams, "opt in transaction");
+                    var signedTx = acct2.SignTransaction(tx);
+                    string mytx; //TODO: store data like this in other table?
+
+                    try
+                    {
+                        var id = await Utils.SubmitTransaction(algodApiInstance, signedTx);
+                        var wait = await Utils.WaitTransactionToComplete(algodApiInstance, id.TxId);
+                        mytx = id.TxId;
+                        Console.WriteLine(wait);
+                    }
+                    catch (Exception ex) { }
+                }                
+            }
+        }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

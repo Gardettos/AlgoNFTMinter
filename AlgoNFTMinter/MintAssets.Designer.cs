@@ -37,6 +37,8 @@ namespace AlgoNFTMinter
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioTest = new System.Windows.Forms.RadioButton();
             this.radioMain = new System.Windows.Forms.RadioButton();
+            this.btnOptIn = new System.Windows.Forms.Button();
+            this.btnTransfer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +75,7 @@ namespace AlgoNFTMinter
             // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(447, 38);
+            this.btnMint.Location = new System.Drawing.Point(435, 11);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;
@@ -126,10 +128,32 @@ namespace AlgoNFTMinter
             this.radioMain.Text = "Main Net";
             this.radioMain.UseVisualStyleBackColor = true;
             // 
+            // btnOptIn
+            // 
+            this.btnOptIn.Location = new System.Drawing.Point(533, 9);
+            this.btnOptIn.Name = "btnOptIn";
+            this.btnOptIn.Size = new System.Drawing.Size(110, 23);
+            this.btnOptIn.TabIndex = 11;
+            this.btnOptIn.Text = "Opt In (Acct 2)";
+            this.btnOptIn.UseVisualStyleBackColor = true;
+            this.btnOptIn.Click += new System.EventHandler(this.btnOptIn_ClickAsync);
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Location = new System.Drawing.Point(533, 43);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(110, 23);
+            this.btnTransfer.TabIndex = 12;
+            this.btnTransfer.Text = "Transfer Asset";
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnTransfer);
+            this.Controls.Add(this.btnOptIn);
             this.Controls.Add(this.radioMain);
             this.Controls.Add(this.radioTest);
             this.Controls.Add(this.btnClear);
@@ -155,5 +179,7 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton radioTest;
         private System.Windows.Forms.RadioButton radioMain;
+        private System.Windows.Forms.Button btnOptIn;
+        private System.Windows.Forms.Button btnTransfer;
     }
 }
