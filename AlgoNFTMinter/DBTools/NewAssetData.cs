@@ -15,11 +15,14 @@ namespace AlgoNFTMinter.DBTools
         [Column("clawback")]
         public string Clawback { get; set; }
 
+        [Column("creator")]
+        public string Creator { get; set; }
+
         [Column("decimals")]
-        public string Decimals { get; set; }
+        public int Decimals { get; set; } = 0;
 
         [Column("defaultFrozen")]
-        public bool DefaultFrozen { get; set; }
+        public bool DefaultFrozen { get; set; } = false;
 
         [Column("freeze")]
         public string Freeze { get; set; }
@@ -37,7 +40,7 @@ namespace AlgoNFTMinter.DBTools
         public string Reserve { get; set; }
 
         [Column("total")]
-        public string Total { get; set; }
+        public int Total { get; set; } = 1;
 
         [Column("unitName")]
         public string UnitName { get; set; }

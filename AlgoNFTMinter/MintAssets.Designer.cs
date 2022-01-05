@@ -39,13 +39,14 @@ namespace AlgoNFTMinter
             this.radioMain = new System.Windows.Forms.RadioButton();
             this.btnOptIn = new System.Windows.Forms.Button();
             this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnPrep = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(116, 38);
+            this.btnClear.Location = new System.Drawing.Point(116, 11);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(86, 24);
             this.btnClear.TabIndex = 8;
@@ -55,11 +56,11 @@ namespace AlgoNFTMinter
             // 
             // btnGetData
             // 
-            this.btnGetData.Location = new System.Drawing.Point(116, 9);
+            this.btnGetData.Location = new System.Drawing.Point(116, 39);
             this.btnGetData.Name = "btnGetData";
             this.btnGetData.Size = new System.Drawing.Size(86, 23);
             this.btnGetData.TabIndex = 7;
-            this.btnGetData.Text = "Get All Data";
+            this.btnGetData.Text = "Refresh Table";
             this.btnGetData.UseVisualStyleBackColor = true;
             this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
@@ -148,10 +149,21 @@ namespace AlgoNFTMinter
             this.btnTransfer.UseVisualStyleBackColor = true;
             this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
             // 
+            // btnPrep
+            // 
+            this.btnPrep.Location = new System.Drawing.Point(332, 11);
+            this.btnPrep.Name = "btnPrep";
+            this.btnPrep.Size = new System.Drawing.Size(75, 23);
+            this.btnPrep.TabIndex = 13;
+            this.btnPrep.Text = "Prep Data";
+            this.btnPrep.UseVisualStyleBackColor = true;
+            this.btnPrep.Click += new System.EventHandler(this.btnPrep_Click);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnPrep);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.btnOptIn);
             this.Controls.Add(this.radioMain);
@@ -181,5 +193,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.RadioButton radioMain;
         private System.Windows.Forms.Button btnOptIn;
         private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnPrep;
     }
 }

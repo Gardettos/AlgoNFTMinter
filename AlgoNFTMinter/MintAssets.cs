@@ -46,21 +46,21 @@ namespace AlgoNFTMinter
                 {
                     var ap = new AssetParams()
                     {
-                        //Clawback = a.Clawback,
-                        Creator = acct1.Address.ToString(),
-                        Decimals = (int)Convert.ToInt64(a.Decimals),
-                        DefaultFrozen = a.DefaultFrozen,
-                        //Freeze = a.Freeze,
-                        //Manager = a.Manager,
+                        Clawback = a.Clawback.Equals("") ? null : a.Clawback,
+                        Creator = a.Creator,
+                        Decimals = (int)Convert.ToInt64(a.Decimals), 
+                        DefaultFrozen = a.DefaultFrozen, 
+                        Freeze = a.Freeze.Equals("") ? null : a.Freeze,
+                        Manager = a.Manager,
                         MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash),
                         Name = a.Name,
-                        //Reserve = a.Reserve,
+                        Reserve = a.Reserve,
                         Total = (ulong?)Convert.ToInt64(a.Total),
                         UnitName = a.UnitName,                                                           
-                        Url = a.URL,                       
+                        Url = a.URL, 
                     };
 
-                    var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
+                   var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
                     SignedTransaction signedTx = acct1.SignTransaction(tx);
 
                     try
@@ -119,14 +119,14 @@ namespace AlgoNFTMinter
                     var Asset = new DBTools.NewAssetData
                     {
                         Clawback = lineValues[0].ToString(),
-                        Decimals = lineValues[1],
+                        Decimals = int.Parse(lineValues[1]),
                         DefaultFrozen = Boolean.Parse(lineValues[2]),
                         Freeze = lineValues[3].ToString(),
                         Manager = lineValues[4].ToString(),
                         MetaDataHash = lineValues[5].ToString(),
                         Name = lineValues[6].ToString(),
                         Reserve = lineValues[7].ToString(),
-                        Total = lineValues[8],
+                        Total = int.Parse(lineValues[8]),
                         UnitName = lineValues[9].ToString(),
                         URL = lineValues[10].ToString()
                     };
@@ -216,6 +216,18 @@ namespace AlgoNFTMinter
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnPrep_Click(object sender, EventArgs e)
+        {
+            string account1_mnemonic = Program.config["account1_mnemonic"];
+            Account acct1 = new Account(account1_mnemonic);
+            var address = acct1.Address.ToString();
+
+            Program.db.RunQuery("UPDATE NewAssetData SET creator = ?", address);
+            Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
+            Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
 
         }
     }
