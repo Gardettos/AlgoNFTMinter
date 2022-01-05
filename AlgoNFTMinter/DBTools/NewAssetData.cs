@@ -54,6 +54,9 @@ namespace AlgoNFTMinter.DBTools
         [Column("optInFlag")]
         public bool OptInFlag { get; set; } = false;
 
+        [Column("transferFlag")]
+        public bool TransferFlag { get; set; } = false;
+
         [Column("assetId")]
         public string AssetID { get; set; }
 

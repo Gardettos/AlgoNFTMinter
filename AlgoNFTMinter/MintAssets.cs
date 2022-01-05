@@ -35,15 +35,15 @@ namespace AlgoNFTMinter
             if (results.Count > 0)
             {
                 //Initialize connections 
-                SetEnvironment();
-                string account1_mnemonic = Program.config["account1_mnemonic"];                         
-                Account acct1 = new Account(account1_mnemonic);
+                SetEnvironment();                        
+                Account acct1 = new Account(Program.config["account1_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
 
-                var transParams = await algodApiInstance.ParamsAsync();
                 foreach (NewAssetData a in results)
                 {
+                    var transParams = await algodApiInstance.ParamsAsync();
+
                     var ap = new AssetParams()
                     {
                         Clawback = a.Clawback.Equals("") ? null : a.Clawback,
@@ -181,6 +181,24 @@ namespace AlgoNFTMinter
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
             }
 
+            else if (dgMain.Columns[e.ColumnIndex].Name == "TransferFlag")
+            {
+                string status = ""; //DB stores booleans as 0/1
+                switch (dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value)
+                {
+                    case false:
+                        status = "0";
+                        break;
+                    case true:
+                        status = "1";
+                        break;
+                }
+
+                Program.db.RunQuery(dbSP.UpdateTransferStatus,
+                    status,
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+            }
+
         }
 
         private async void btnOptIn_ClickAsync(object sender, EventArgs e)
@@ -191,13 +209,12 @@ namespace AlgoNFTMinter
             {
                 //Initialize connections 
                 SetEnvironment();
-                string account2_mnemonic = Program.config["account2_mnemonic"];
-                Account acct2 = new Account(account2_mnemonic);
+                Account acct2 = new Account(Program.config["account2_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
-                var transParams = await algodApiInstance.ParamsAsync();
                 foreach (NewAssetData a in results)
                 {
+                    var transParams = await algodApiInstance.ParamsAsync();
                     var tx = Utils.GetAssetOptingInTransaction(acct2.Address, ulong.Parse(a.AssetID), transParams, "opt in transaction");
                     var signedTx = acct2.SignTransaction(tx);
                     string mytx; //TODO: store data like this in other table?
@@ -214,9 +231,34 @@ namespace AlgoNFTMinter
             }
         }
 
-        private void btnTransfer_Click(object sender, EventArgs e)
+        private async void btnTransfer_ClickAsync(object sender, EventArgs e)
         {
+            var results = Program.db.RetrieveData(dbSP.GetAssetsToTransfer);
+            if (results.Count > 0)
+            {
+                SetEnvironment();
+                var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
+                var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
+                Account acct1 = new Account(Program.config["account1_mnemonic"]);
+                Account acct2 = new Account(Program.config["account2_mnemonic"]);
 
+                foreach (NewAssetData a in results)
+                {
+                    var transParams = await algodApiInstance.ParamsAsync();
+                    var tx = Utils.GetTransferAssetTransaction(acct1.Address, acct2.Address, ulong.Parse(a.AssetID), (ulong)a.Total, transParams, null, "transfer message");
+                    var signedTx = acct1.SignTransaction(tx);
+                    string mytx;
+
+                    try
+                    {
+                        var id = await Utils.SubmitTransaction(algodApiInstance, signedTx);
+                        var wait = await Utils.WaitTransactionToComplete(algodApiInstance, id.TxId);
+                        mytx = id.TxId;
+                        Console.WriteLine(wait);
+                    }
+                    catch (Exception ex){}
+                }
+            }
         }
 
         private void btnPrep_Click(object sender, EventArgs e)

@@ -147,7 +147,7 @@ namespace AlgoNFTMinter
             this.btnTransfer.TabIndex = 12;
             this.btnTransfer.Text = "Transfer Asset";
             this.btnTransfer.UseVisualStyleBackColor = true;
-            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_ClickAsync);
             // 
             // btnPrep
             // 

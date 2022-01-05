@@ -25,6 +25,12 @@ namespace AlgoNFTMinter.DBTools
             get => spGetAssetsToOptIn;
         }
 
+        private const string spGetAssetsToTransfer = "SELECT * FROM NewAssetData WHERE transferFlag = True;";
+        public static string GetAssetsToTransfer
+        {
+            get => spGetAssetsToTransfer;
+        }
+
         private const string spDropTable = "DROP TABLE {0}";
         public static string DropTable
         {
@@ -41,6 +47,12 @@ namespace AlgoNFTMinter.DBTools
         public static string UpdateOptInStatus
         {
             get => spUpdateOptInStatus;
+        }
+
+        private const string spUpdateTransferStatus = "UPDATE NewAssetData SET transferFlag = ? WHERE Id = ?;";
+        public static string UpdateTransferStatus
+        {
+            get => spUpdateTransferStatus;
         }
     }
 }
