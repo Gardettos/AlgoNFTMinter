@@ -41,13 +41,14 @@ namespace AlgoNFTMinter
             this.btnTransfer = new System.Windows.Forms.Button();
             this.btnPrep = new System.Windows.Forms.Button();
             this.btnARC = new System.Windows.Forms.Button();
+            this.btnPinata = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(116, 11);
+            this.btnClear.Location = new System.Drawing.Point(205, 11);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(86, 24);
             this.btnClear.TabIndex = 8;
@@ -57,7 +58,7 @@ namespace AlgoNFTMinter
             // 
             // btnGetData
             // 
-            this.btnGetData.Location = new System.Drawing.Point(116, 39);
+            this.btnGetData.Location = new System.Drawing.Point(205, 41);
             this.btnGetData.Name = "btnGetData";
             this.btnGetData.Size = new System.Drawing.Size(86, 23);
             this.btnGetData.TabIndex = 7;
@@ -67,17 +68,17 @@ namespace AlgoNFTMinter
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(26, 39);
+            this.btnImport.Location = new System.Drawing.Point(18, 13);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.Size = new System.Drawing.Size(78, 23);
             this.btnImport.TabIndex = 6;
-            this.btnImport.Text = "Import CSV";
+            this.btnImport.Text = "Import Data";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(357, 13);
+            this.btnMint.Location = new System.Drawing.Point(393, 9);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;
@@ -132,7 +133,7 @@ namespace AlgoNFTMinter
             // 
             // btnOptIn
             // 
-            this.btnOptIn.Location = new System.Drawing.Point(455, 11);
+            this.btnOptIn.Location = new System.Drawing.Point(474, 11);
             this.btnOptIn.Name = "btnOptIn";
             this.btnOptIn.Size = new System.Drawing.Size(110, 23);
             this.btnOptIn.TabIndex = 11;
@@ -142,7 +143,7 @@ namespace AlgoNFTMinter
             // 
             // btnTransfer
             // 
-            this.btnTransfer.Location = new System.Drawing.Point(455, 45);
+            this.btnTransfer.Location = new System.Drawing.Point(474, 45);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(110, 23);
             this.btnTransfer.TabIndex = 12;
@@ -152,7 +153,7 @@ namespace AlgoNFTMinter
             // 
             // btnPrep
             // 
-            this.btnPrep.Location = new System.Drawing.Point(254, 13);
+            this.btnPrep.Location = new System.Drawing.Point(115, 13);
             this.btnPrep.Name = "btnPrep";
             this.btnPrep.Size = new System.Drawing.Size(75, 23);
             this.btnPrep.TabIndex = 13;
@@ -170,10 +171,21 @@ namespace AlgoNFTMinter
             this.btnARC.UseVisualStyleBackColor = true;
             this.btnARC.Click += new System.EventHandler(this.btnARC_Click);
             // 
+            // btnPinata
+            // 
+            this.btnPinata.Location = new System.Drawing.Point(312, 9);
+            this.btnPinata.Name = "btnPinata";
+            this.btnPinata.Size = new System.Drawing.Size(75, 23);
+            this.btnPinata.TabIndex = 15;
+            this.btnPinata.Text = "Pinata";
+            this.btnPinata.UseVisualStyleBackColor = true;
+            this.btnPinata.Click += new System.EventHandler(this.btnPinata_ClickAsync);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnPinata);
             this.Controls.Add(this.btnARC);
             this.Controls.Add(this.btnPrep);
             this.Controls.Add(this.btnTransfer);
@@ -207,5 +219,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Button btnTransfer;
         private System.Windows.Forms.Button btnPrep;
         private System.Windows.Forms.Button btnARC;
+        private System.Windows.Forms.Button btnPinata;
     }
 }

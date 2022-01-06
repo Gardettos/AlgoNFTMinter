@@ -11,9 +11,8 @@ using Algorand.V2;
 using Algorand.V2.Algod;
 using Algorand.V2.Algod.Model;
 using Account = Algorand.Account;
-
+using Pinata.Client;
 using System.IO;
-using Ipfs.Http;
 
 using Microsoft.Extensions.Configuration;
 using AlgoNFTMinter.DBTools;
@@ -86,6 +85,12 @@ namespace AlgoNFTMinter
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            //TODO: Need to update Import to only parse metadata, which is then added to DB table
+
+            //Import/locate Images
+
+  
+
             if (File.Exists(Program.config["csvPath"]))
             {       
                 ImportCSVFile(Program.config["csvPath"]);
@@ -272,6 +277,7 @@ namespace AlgoNFTMinter
         private void btnPrep_Click(object sender, EventArgs e)
         {
             //TODO: Move to constructor or some sort of init process?
+            //TODO: Could use this event to AutoPopulate Unit and Assets names with an autoincrementer. Possibly description and url?
             string account1_mnemonic = Program.config["account1_mnemonic"];
             Account acct1 = new Account(account1_mnemonic);
             var address = acct1.Address.ToString();
@@ -292,6 +298,8 @@ namespace AlgoNFTMinter
 
             var assetsInfo = await searchApi.AssetsAsync(null, 10, null, null, null, null, 56582613);
             Console.WriteLine("Search for assets" + assetsInfo.ToJson());
+
+
 
 
             //ipfs://QmWS1VAdMD353A6SDk9wNyvkT14kyCiZrNDYAad4w1tKqT#v
@@ -315,6 +323,42 @@ namespace AlgoNFTMinter
             //  ]
             //}";
 
+
+        }
+
+        private async System.Threading.Tasks.Task btnPinata_ClickAsync(object sender, EventArgs e)
+        {
+            //Import files
+
+
+            
+
+            //ipfs
+            var config = new Config
+            {
+                ApiKey = Program.config["ipfsKey"],
+                ApiSecret = Program.config["ipfsSecret"]
+            };
+
+            var client = new PinataClient(config);
+            var response = await client.Pinning.PinFileToIpfsAsync(content =>
+            {
+                var fl = new System.Net.Http.ByteArrayContent(System.IO.File.ReadAllBytes("FilePath"));
+                fl.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("image/png");
+                var fldata = new
+                {
+                    filepath = $"filePath"
+                };
+
+                content.AddPinataFile(fl, fldata.filepath);
+            });
+
+            if (response.IsSuccess)
+            {
+                //File uploaded to Pinata Cloud and can be accessed on IPFS!
+                var cid = response.IpfsHash; // QmR9HwzakHVr67HFzzgJHoRjwzTTt4wtD6KU4NFe2ArYuj
+                Console.WriteLine(cid);
+            }
 
         }
     }
