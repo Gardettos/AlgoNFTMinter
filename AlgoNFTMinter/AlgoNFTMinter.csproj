@@ -8,10 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Algorand" Version="0.2.1" />
-    <PackageReference Include="Ipfs.Http.Client" Version="0.33.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+    <PackageReference Include="Pinata.Client" Version="1.0.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
   <ItemGroup>
