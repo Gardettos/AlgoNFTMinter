@@ -19,8 +19,8 @@ namespace AlgoNFTMinter
         [STAThread]
         static void Main()
         {
-            //Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-            //AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -31,18 +31,19 @@ namespace AlgoNFTMinter
               .Build();
 
             db = new DatabaseHandler();
-
             Application.Run(new MainForm());
         }
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-           
+            var ErrorHandler = new ErrorHandler("AlgoNFTMinter");
+            ErrorHandler.ProcessError(e.Exception);
 
         }
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
-            
+            var ErrorHandler = new ErrorHandler("AlgoNFTMinter");
+            ErrorHandler.ProcessError((Exception) args.ExceptionObject);
         }
 
     }

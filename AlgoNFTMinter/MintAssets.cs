@@ -18,6 +18,7 @@ using Ipfs.Http;
 using Microsoft.Extensions.Configuration;
 using AlgoNFTMinter.DBTools;
 using System.Linq;
+using Algorand.V2.Indexer;
 
 namespace AlgoNFTMinter
 {
@@ -38,6 +39,7 @@ namespace AlgoNFTMinter
                 SetEnvironment();                        
                 Account acct1 = new Account(Program.config["account1_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
+         
                 var algodApiInstance = new DefaultApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
 
                 foreach (NewAssetData a in results)
@@ -137,17 +139,25 @@ namespace AlgoNFTMinter
             }
         }
 
-        private void SetEnvironment()
+        private void SetEnvironment(bool indexer = false)
         {
-            if (radioTest.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_TEST"];
-            else if (radioMain.Checked) ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_MAIN"];
+            if (radioTest.Checked) {
+                if(indexer) ALGOD_API_ADDR = Program.config["ALGOD_INDX_ADDR_TEST"];
+                else ALGOD_API_ADDR = Program.config["ALGOD_API_ADDR_TEST"]; 
+            }
+            else if (radioMain.Checked) {
+                if (indexer) ALGOD_API_ADDR = Program.config["ALGOD_INDX_ADDR_MAIN"];
+                else ALGOD_API_ADDR = Program.config["ALGOD_INDX_ADDR_MAIN"];
+            }
+
         }
 
         private void dgMain_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            //TODO: Clean up this function
+            string status = string.Empty; //DB stores booleans as 0/1
             if (dgMain.Columns[e.ColumnIndex].Name == "MintAssetFlag")
                 {
-                string status = ""; //DB stores booleans as 0/1
                 switch (dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value)
                 {
                     case false:
@@ -165,7 +175,6 @@ namespace AlgoNFTMinter
 
             else if (dgMain.Columns[e.ColumnIndex].Name == "OptInFlag")
             {
-                string status = ""; //DB stores booleans as 0/1
                 switch (dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value)
                 {
                     case false:
@@ -183,7 +192,6 @@ namespace AlgoNFTMinter
 
             else if (dgMain.Columns[e.ColumnIndex].Name == "TransferFlag")
             {
-                string status = ""; //DB stores booleans as 0/1
                 switch (dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value)
                 {
                     case false:
@@ -263,13 +271,50 @@ namespace AlgoNFTMinter
 
         private void btnPrep_Click(object sender, EventArgs e)
         {
+            //TODO: Move to constructor or some sort of init process?
             string account1_mnemonic = Program.config["account1_mnemonic"];
             Account acct1 = new Account(account1_mnemonic);
             var address = acct1.Address.ToString();
-
+           
             Program.db.RunQuery("UPDATE NewAssetData SET creator = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
+
+        }
+
+        private async void btnARC_Click(object sender, EventArgs e)
+        {
+            //var x = new ARC69();
+            SetEnvironment(true);
+            var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
+            SearchApi searchApi = new SearchApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
+
+
+            var assetsInfo = await searchApi.AssetsAsync(null, 10, null, null, null, null, 56582613);
+            Console.WriteLine("Search for assets" + assetsInfo.ToJson());
+
+
+            //ipfs://QmWS1VAdMD353A6SDk9wNyvkT14kyCiZrNDYAad4w1tKqT#v
+
+            //var note = @"{
+            //  'standard': 'arc69',
+            //  'description': 'STUPIDHORSE 069',
+            //  'external_url': 'thurstober.com',
+            //  'attributes': [{
+            //      'trait_type': 'Background Color',
+            //      'value': 'Blue Sherbet'
+            //    },
+            //    {
+            //      'trait_type': 'Coat Color',
+            //      'value': 'Blue'
+            //    },
+            //    {
+            //      'trait_type': 'Hair Style',
+            //      'value': 'Lil Hat'
+            //    }
+            //  ]
+            //}";
+
 
         }
     }

@@ -40,6 +40,7 @@ namespace AlgoNFTMinter
             this.btnOptIn = new System.Windows.Forms.Button();
             this.btnTransfer = new System.Windows.Forms.Button();
             this.btnPrep = new System.Windows.Forms.Button();
+            this.btnARC = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +77,7 @@ namespace AlgoNFTMinter
             // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(435, 11);
+            this.btnMint.Location = new System.Drawing.Point(357, 13);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;
@@ -111,7 +112,7 @@ namespace AlgoNFTMinter
             // 
             this.radioTest.AutoSize = true;
             this.radioTest.Checked = true;
-            this.radioTest.Location = new System.Drawing.Point(660, 11);
+            this.radioTest.Location = new System.Drawing.Point(709, 11);
             this.radioTest.Name = "radioTest";
             this.radioTest.Size = new System.Drawing.Size(67, 19);
             this.radioTest.TabIndex = 9;
@@ -122,7 +123,7 @@ namespace AlgoNFTMinter
             // radioMain
             // 
             this.radioMain.AutoSize = true;
-            this.radioMain.Location = new System.Drawing.Point(660, 37);
+            this.radioMain.Location = new System.Drawing.Point(709, 37);
             this.radioMain.Name = "radioMain";
             this.radioMain.Size = new System.Drawing.Size(74, 19);
             this.radioMain.TabIndex = 10;
@@ -131,7 +132,7 @@ namespace AlgoNFTMinter
             // 
             // btnOptIn
             // 
-            this.btnOptIn.Location = new System.Drawing.Point(533, 9);
+            this.btnOptIn.Location = new System.Drawing.Point(455, 11);
             this.btnOptIn.Name = "btnOptIn";
             this.btnOptIn.Size = new System.Drawing.Size(110, 23);
             this.btnOptIn.TabIndex = 11;
@@ -141,7 +142,7 @@ namespace AlgoNFTMinter
             // 
             // btnTransfer
             // 
-            this.btnTransfer.Location = new System.Drawing.Point(533, 43);
+            this.btnTransfer.Location = new System.Drawing.Point(455, 45);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(110, 23);
             this.btnTransfer.TabIndex = 12;
@@ -151,7 +152,7 @@ namespace AlgoNFTMinter
             // 
             // btnPrep
             // 
-            this.btnPrep.Location = new System.Drawing.Point(332, 11);
+            this.btnPrep.Location = new System.Drawing.Point(254, 13);
             this.btnPrep.Name = "btnPrep";
             this.btnPrep.Size = new System.Drawing.Size(75, 23);
             this.btnPrep.TabIndex = 13;
@@ -159,10 +160,21 @@ namespace AlgoNFTMinter
             this.btnPrep.UseVisualStyleBackColor = true;
             this.btnPrep.Click += new System.EventHandler(this.btnPrep_Click);
             // 
+            // btnARC
+            // 
+            this.btnARC.Location = new System.Drawing.Point(590, 13);
+            this.btnARC.Name = "btnARC";
+            this.btnARC.Size = new System.Drawing.Size(75, 23);
+            this.btnARC.TabIndex = 14;
+            this.btnARC.Text = "ARC69";
+            this.btnARC.UseVisualStyleBackColor = true;
+            this.btnARC.Click += new System.EventHandler(this.btnARC_Click);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnARC);
             this.Controls.Add(this.btnPrep);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.btnOptIn);
@@ -194,5 +206,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Button btnOptIn;
         private System.Windows.Forms.Button btnTransfer;
         private System.Windows.Forms.Button btnPrep;
+        private System.Windows.Forms.Button btnARC;
     }
 }
