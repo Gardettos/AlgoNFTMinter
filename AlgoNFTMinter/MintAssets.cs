@@ -326,14 +326,8 @@ namespace AlgoNFTMinter
 
         }
 
-        private async System.Threading.Tasks.Task btnPinata_ClickAsync(object sender, EventArgs e)
+        private async void btnPinata_ClickAsync(object sender, EventArgs e)
         {
-            //Import files
-
-
-            
-
-            //ipfs
             var config = new Config
             {
                 ApiKey = Program.config["ipfsKey"],
@@ -341,25 +335,30 @@ namespace AlgoNFTMinter
             };
 
             var client = new PinataClient(config);
-            var response = await client.Pinning.PinFileToIpfsAsync(content =>
+
+            var filesToProcess = System.IO.Directory.GetFiles(Program.config["imageDirectory"], "*.png");
+
+            foreach (string filePath in filesToProcess)
             {
-                var fl = new System.Net.Http.ByteArrayContent(System.IO.File.ReadAllBytes("FilePath"));
-                fl.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("image/png");
-                var fldata = new
+                var response = await client.Pinning.PinFileToIpfsAsync(content =>
                 {
-                    filepath = $"filePath"
-                };
+                    var fl = new System.Net.Http.ByteArrayContent(System.IO.File.ReadAllBytes(@filePath));
+                    fl.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("image/png");
+                    var fldata = new
+                    {
+                        filepath = $"fileName"
+                    };
 
-                content.AddPinataFile(fl, fldata.filepath);
-            });
+                    content.AddPinataFile(fl, fldata.filepath);
+                });
 
-            if (response.IsSuccess)
-            {
-                //File uploaded to Pinata Cloud and can be accessed on IPFS!
-                var cid = response.IpfsHash; // QmR9HwzakHVr67HFzzgJHoRjwzTTt4wtD6KU4NFe2ArYuj
-                Console.WriteLine(cid);
+                if (response.IsSuccess)
+                {
+                    //File uploaded to Pinata Cloud and can be accessed on IPFS!
+                    var cid = response.IpfsHash;
+                    Console.WriteLine(cid);
+                }
             }
-
         }
     }
 }
