@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using CsvHelper;
 
 using Algorand;
 using Algorand.V2;
@@ -18,6 +19,8 @@ using Microsoft.Extensions.Configuration;
 using AlgoNFTMinter.DBTools;
 using System.Linq;
 using Algorand.V2.Indexer;
+using System.Globalization;
+using Newtonsoft.Json;
 
 namespace AlgoNFTMinter
 {
@@ -73,7 +76,7 @@ namespace AlgoNFTMinter
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.StackTrace); //TODO: Throw error issue sending tran to network
+                        throw new Exception("Issue minting asset!", ex);
                     }                                                       
                 }
                 //Update DB record with the new assetID
@@ -85,63 +88,56 @@ namespace AlgoNFTMinter
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            //TODO: Need to update Import to only parse metadata, which is then added to DB table
-
-            //Import/locate Images
-
-  
-
             if (File.Exists(Program.config["csvPath"]))
             {       
                 ImportCSVFile(Program.config["csvPath"]);
             }
             else
             {
-                //throw error
-                MessageBox.Show("CSV File Missing");
+                throw new Exception("Cannot locate csv");
             }
-        }
-
-        private void btnGetData_Click(object sender, EventArgs e)
-        {
-            var results = Program.db.RetrieveData(dbSP.GetAllData);
-            dgMain.DataSource = results;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             Program.db.TruncateTable();
         }
-
+        /// <summary>
+        /// This method reads the csv file containing all trait data and formats each row to json, and then formats as arc69.
+        /// </summary>
+        /// <param name="filePath"></param>
         private void ImportCSVFile(String filePath)
         {
-            using (StreamReader sr = new StreamReader(filePath))
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                string headerLine = sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    List<string> lineValues = line.Split(',').ToList();
+                var records = csv.GetRecords<dynamic>();
+                //meta_data = '{"standard":"arc69", "properties":' + attributes + '}'
 
-                    var Asset = new DBTools.NewAssetData
-                    {
-                        Clawback = lineValues[0].ToString(),
-                        Decimals = int.Parse(lineValues[1]),
-                        DefaultFrozen = Boolean.Parse(lineValues[2]),
-                        Freeze = lineValues[3].ToString(),
-                        Manager = lineValues[4].ToString(),
-                        MetaDataHash = lineValues[5].ToString(),
-                        Name = lineValues[6].ToString(),
-                        Reserve = lineValues[7].ToString(),
-                        Total = int.Parse(lineValues[8]),
-                        UnitName = lineValues[9].ToString(),
-                        URL = lineValues[10].ToString()
-                    };
+        
 
-                    Program.db.AddRecord(Asset);
+                var s = JsonConvert.SerializeObject(records);
 
-                }
             }
+
+            
+            //var Asset = new DBTools.NewAssetData
+            //{
+            //    Clawback = lineValues[0].ToString(),
+            //    Decimals = int.Parse(lineValues[1]),
+            //    DefaultFrozen = Boolean.Parse(lineValues[2]),
+            //    Freeze = lineValues[3].ToString(),
+            //    Manager = lineValues[4].ToString(),
+            //    MetaDataHash = lineValues[5].ToString(),
+            //    Name = lineValues[6].ToString(),
+            //    Reserve = lineValues[7].ToString(),
+            //    Total = int.Parse(lineValues[8]),
+            //    UnitName = lineValues[9].ToString(),
+            //    URL = lineValues[10].ToString()
+            //};
+
+            //Program.db.AddRecord(Asset);
+
         }
 
         private void SetEnvironment(bool indexer = false)
@@ -296,7 +292,7 @@ namespace AlgoNFTMinter
             SearchApi searchApi = new SearchApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
 
 
-            var assetsInfo = await searchApi.AssetsAsync(null, 10, null, null, null, null, 56582613);
+            var assetsInfo = await searchApi.AssetsAsync(null, 10, null, null, null, null, 304873374);//304873374
             Console.WriteLine("Search for assets" + assetsInfo.ToJson());
 
 
@@ -359,6 +355,12 @@ namespace AlgoNFTMinter
                     Console.WriteLine(cid);
                 }
             }
+        }
+
+        private void btnRefreshTable_Click(object sender, EventArgs e)
+        {
+            var results = Program.db.RetrieveData(dbSP.GetAllData);
+            dgMain.DataSource = results;
         }
     }
 }

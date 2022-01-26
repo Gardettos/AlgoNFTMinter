@@ -30,7 +30,7 @@ namespace AlgoNFTMinter
         private void InitializeComponent()
         {
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnGetData = new System.Windows.Forms.Button();
+            this.btnRefreshTable = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnMint = new System.Windows.Forms.Button();
             this.dgMain = new System.Windows.Forms.DataGridView();
@@ -56,23 +56,23 @@ namespace AlgoNFTMinter
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // btnGetData
+            // btnRefreshTable
             // 
-            this.btnGetData.Location = new System.Drawing.Point(205, 41);
-            this.btnGetData.Name = "btnGetData";
-            this.btnGetData.Size = new System.Drawing.Size(86, 23);
-            this.btnGetData.TabIndex = 7;
-            this.btnGetData.Text = "Refresh Table";
-            this.btnGetData.UseVisualStyleBackColor = true;
-            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
+            this.btnRefreshTable.Location = new System.Drawing.Point(205, 41);
+            this.btnRefreshTable.Name = "btnRefreshTable";
+            this.btnRefreshTable.Size = new System.Drawing.Size(86, 23);
+            this.btnRefreshTable.TabIndex = 7;
+            this.btnRefreshTable.Text = "Refresh Table";
+            this.btnRefreshTable.UseVisualStyleBackColor = true;
+            this.btnRefreshTable.Click += new System.EventHandler(this.btnRefreshTable_Click);
             // 
             // btnImport
             // 
             this.btnImport.Location = new System.Drawing.Point(18, 13);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(78, 23);
+            this.btnImport.Size = new System.Drawing.Size(79, 43);
             this.btnImport.TabIndex = 6;
-            this.btnImport.Text = "Import Data";
+            this.btnImport.Text = "Import Trait Data";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -194,7 +194,7 @@ namespace AlgoNFTMinter
             this.Controls.Add(this.radioTest);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnGetData);
+            this.Controls.Add(this.btnRefreshTable);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnMint);
             this.Name = "MintAssets";
@@ -209,7 +209,7 @@ namespace AlgoNFTMinter
         #endregion
         private System.Windows.Forms.Button btnMint;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnGetData;
+        private System.Windows.Forms.Button btnRefreshTable;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.DataGridView dgMain;
         private System.Windows.Forms.Panel panel1;
