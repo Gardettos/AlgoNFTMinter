@@ -89,6 +89,8 @@ namespace AlgoNFTMinter
         {
             if (File.Exists(Program.config["csvPath"]))
             {       
+                if(txtboxAssetName.Text.Length < 1) throw new Exception("Enter Asset Name");
+                if (txtbxUnitName.Text.Length < 1) throw new Exception("Enter Unit Name");
                 ImportCSVFile(Program.config["csvPath"]);
             }
             else
@@ -121,7 +123,7 @@ namespace AlgoNFTMinter
                     {
                         Name = String.Concat(txtboxAssetName.Text, i.ToString()),
                         UnitName = String.Concat(txtbxUnitName.Text, i.ToString()),
-                        MetaDataHash = meta_data,
+                        ArcJson = meta_data,
 
                     };
 
