@@ -39,16 +39,18 @@ namespace AlgoNFTMinter
             this.radioMain = new System.Windows.Forms.RadioButton();
             this.btnOptIn = new System.Windows.Forms.Button();
             this.btnTransfer = new System.Windows.Forms.Button();
-            this.btnPrep = new System.Windows.Forms.Button();
-            this.btnARC = new System.Windows.Forms.Button();
             this.btnPinata = new System.Windows.Forms.Button();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.txtbxUnitName = new System.Windows.Forms.TextBox();
+            this.txtboxAssetName = new System.Windows.Forms.TextBox();
+            this.lblAsset = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(205, 11);
+            this.btnClear.Location = new System.Drawing.Point(369, 3);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(86, 24);
             this.btnClear.TabIndex = 8;
@@ -58,7 +60,7 @@ namespace AlgoNFTMinter
             // 
             // btnRefreshTable
             // 
-            this.btnRefreshTable.Location = new System.Drawing.Point(205, 41);
+            this.btnRefreshTable.Location = new System.Drawing.Point(369, 33);
             this.btnRefreshTable.Name = "btnRefreshTable";
             this.btnRefreshTable.Size = new System.Drawing.Size(86, 23);
             this.btnRefreshTable.TabIndex = 7;
@@ -68,7 +70,7 @@ namespace AlgoNFTMinter
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(18, 13);
+            this.btnImport.Location = new System.Drawing.Point(5, 13);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(79, 43);
             this.btnImport.TabIndex = 6;
@@ -78,7 +80,7 @@ namespace AlgoNFTMinter
             // 
             // btnMint
             // 
-            this.btnMint.Location = new System.Drawing.Point(393, 9);
+            this.btnMint.Location = new System.Drawing.Point(472, 37);
             this.btnMint.Name = "btnMint";
             this.btnMint.Size = new System.Drawing.Size(75, 23);
             this.btnMint.TabIndex = 0;
@@ -133,7 +135,7 @@ namespace AlgoNFTMinter
             // 
             // btnOptIn
             // 
-            this.btnOptIn.Location = new System.Drawing.Point(474, 11);
+            this.btnOptIn.Location = new System.Drawing.Point(563, 3);
             this.btnOptIn.Name = "btnOptIn";
             this.btnOptIn.Size = new System.Drawing.Size(110, 23);
             this.btnOptIn.TabIndex = 11;
@@ -143,7 +145,7 @@ namespace AlgoNFTMinter
             // 
             // btnTransfer
             // 
-            this.btnTransfer.Location = new System.Drawing.Point(474, 45);
+            this.btnTransfer.Location = new System.Drawing.Point(563, 37);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(110, 23);
             this.btnTransfer.TabIndex = 12;
@@ -151,29 +153,9 @@ namespace AlgoNFTMinter
             this.btnTransfer.UseVisualStyleBackColor = true;
             this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_ClickAsync);
             // 
-            // btnPrep
-            // 
-            this.btnPrep.Location = new System.Drawing.Point(115, 13);
-            this.btnPrep.Name = "btnPrep";
-            this.btnPrep.Size = new System.Drawing.Size(75, 23);
-            this.btnPrep.TabIndex = 13;
-            this.btnPrep.Text = "Prep Data";
-            this.btnPrep.UseVisualStyleBackColor = true;
-            this.btnPrep.Click += new System.EventHandler(this.btnPrep_Click);
-            // 
-            // btnARC
-            // 
-            this.btnARC.Location = new System.Drawing.Point(590, 13);
-            this.btnARC.Name = "btnARC";
-            this.btnARC.Size = new System.Drawing.Size(75, 23);
-            this.btnARC.TabIndex = 14;
-            this.btnARC.Text = "ARC69";
-            this.btnARC.UseVisualStyleBackColor = true;
-            this.btnARC.Click += new System.EventHandler(this.btnARC_Click);
-            // 
             // btnPinata
             // 
-            this.btnPinata.Location = new System.Drawing.Point(312, 9);
+            this.btnPinata.Location = new System.Drawing.Point(472, 2);
             this.btnPinata.Name = "btnPinata";
             this.btnPinata.Size = new System.Drawing.Size(75, 23);
             this.btnPinata.TabIndex = 15;
@@ -181,13 +163,47 @@ namespace AlgoNFTMinter
             this.btnPinata.UseVisualStyleBackColor = true;
             this.btnPinata.Click += new System.EventHandler(this.btnPinata_ClickAsync);
             // 
+            // lblUnit
+            // 
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(113, 14);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(64, 15);
+            this.lblUnit.TabIndex = 16;
+            this.lblUnit.Text = "Unit Name";
+            // 
+            // txtbxUnitName
+            // 
+            this.txtbxUnitName.Location = new System.Drawing.Point(183, 10);
+            this.txtbxUnitName.Name = "txtbxUnitName";
+            this.txtbxUnitName.Size = new System.Drawing.Size(139, 23);
+            this.txtbxUnitName.TabIndex = 17;
+            // 
+            // txtboxAssetName
+            // 
+            this.txtboxAssetName.Location = new System.Drawing.Point(183, 39);
+            this.txtboxAssetName.Name = "txtboxAssetName";
+            this.txtboxAssetName.Size = new System.Drawing.Size(139, 23);
+            this.txtboxAssetName.TabIndex = 18;
+            // 
+            // lblAsset
+            // 
+            this.lblAsset.AutoSize = true;
+            this.lblAsset.Location = new System.Drawing.Point(107, 38);
+            this.lblAsset.Name = "lblAsset";
+            this.lblAsset.Size = new System.Drawing.Size(70, 15);
+            this.lblAsset.TabIndex = 19;
+            this.lblAsset.Text = "Asset Name";
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblAsset);
+            this.Controls.Add(this.txtboxAssetName);
+            this.Controls.Add(this.txtbxUnitName);
+            this.Controls.Add(this.lblUnit);
             this.Controls.Add(this.btnPinata);
-            this.Controls.Add(this.btnARC);
-            this.Controls.Add(this.btnPrep);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.btnOptIn);
             this.Controls.Add(this.radioMain);
@@ -217,8 +233,10 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.RadioButton radioMain;
         private System.Windows.Forms.Button btnOptIn;
         private System.Windows.Forms.Button btnTransfer;
-        private System.Windows.Forms.Button btnPrep;
-        private System.Windows.Forms.Button btnARC;
         private System.Windows.Forms.Button btnPinata;
+        private System.Windows.Forms.Label lblUnit;
+        private System.Windows.Forms.TextBox txtbxUnitName;
+        private System.Windows.Forms.TextBox txtboxAssetName;
+        private System.Windows.Forms.Label lblAsset;
     }
 }

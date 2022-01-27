@@ -15,7 +15,6 @@ using Account = Algorand.Account;
 using Pinata.Client;
 using System.IO;
 
-using Microsoft.Extensions.Configuration;
 using AlgoNFTMinter.DBTools;
 using System.Linq;
 using Algorand.V2.Indexer;
@@ -63,7 +62,7 @@ namespace AlgoNFTMinter
                         UnitName = a.UnitName,                                                           
                         Url = a.URL, 
                     };
-
+                    
                    var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
                     SignedTransaction signedTx = acct1.SignTransaction(tx);
 
@@ -103,40 +102,41 @@ namespace AlgoNFTMinter
             Program.db.TruncateTable();
         }
         /// <summary>
-        /// This method reads the csv file containing all trait data and formats each row to json, and then formats as arc69.
+        /// This method reads the csv file containing all trait data and formats each row as arc69 json.
         /// </summary>
         /// <param name="filePath"></param>
         private void ImportCSVFile(String filePath)
         {
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
+            {        
                 var records = csv.GetRecords<dynamic>();
-                //meta_data = '{"standard":"arc69", "properties":' + attributes + '}'
+                var recordList  = Enumerable.ToList(records);
 
-        
+                int i = 1;
+                foreach (var line in recordList)
+                {
+                    var meta_data = "{\"standard\":\"arc69\", \"properties\":" + JsonConvert.SerializeObject(line) + "}";
+                    var Asset = new DBTools.NewAssetData
+                    {
+                        Name = String.Concat(txtboxAssetName.Text, i.ToString()),
+                        UnitName = String.Concat(txtbxUnitName.Text, i.ToString()),
+                        MetaDataHash = meta_data,
 
-                var s = JsonConvert.SerializeObject(records);
+                    };
 
+                    Program.db.AddRecord(Asset);
+                    i++;
+                }
             }
 
-            
-            //var Asset = new DBTools.NewAssetData
-            //{
-            //    Clawback = lineValues[0].ToString(),
-            //    Decimals = int.Parse(lineValues[1]),
-            //    DefaultFrozen = Boolean.Parse(lineValues[2]),
-            //    Freeze = lineValues[3].ToString(),
-            //    Manager = lineValues[4].ToString(),
-            //    MetaDataHash = lineValues[5].ToString(),
-            //    Name = lineValues[6].ToString(),
-            //    Reserve = lineValues[7].ToString(),
-            //    Total = int.Parse(lineValues[8]),
-            //    UnitName = lineValues[9].ToString(),
-            //    URL = lineValues[10].ToString()
-            //};
-
-            //Program.db.AddRecord(Asset);
+            //Set account number as default value for these fields
+            string account1_mnemonic = Program.config["account1_mnemonic"];
+            Account acct1 = new Account(account1_mnemonic);
+            var address = acct1.Address.ToString();
+            Program.db.RunQuery("UPDATE NewAssetData SET creator = ?", address);
+            Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
+            Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
 
         }
 
@@ -270,57 +270,6 @@ namespace AlgoNFTMinter
             }
         }
 
-        private void btnPrep_Click(object sender, EventArgs e)
-        {
-            //TODO: Move to constructor or some sort of init process?
-            //TODO: Could use this event to AutoPopulate Unit and Assets names with an autoincrementer. Possibly description and url?
-            string account1_mnemonic = Program.config["account1_mnemonic"];
-            Account acct1 = new Account(account1_mnemonic);
-            var address = acct1.Address.ToString();
-           
-            Program.db.RunQuery("UPDATE NewAssetData SET creator = ?", address);
-            Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
-            Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
-
-        }
-
-        private async void btnARC_Click(object sender, EventArgs e)
-        {
-            //var x = new ARC69();
-            SetEnvironment(true);
-            var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
-            SearchApi searchApi = new SearchApi(httpClient) { BaseUrl = ALGOD_API_ADDR };
-
-
-            var assetsInfo = await searchApi.AssetsAsync(null, 10, null, null, null, null, 304873374);//304873374
-            Console.WriteLine("Search for assets" + assetsInfo.ToJson());
-
-
-
-
-            //ipfs://QmWS1VAdMD353A6SDk9wNyvkT14kyCiZrNDYAad4w1tKqT#v
-
-            //var note = @"{
-            //  'standard': 'arc69',
-            //  'description': 'STUPIDHORSE 069',
-            //  'external_url': 'thurstober.com',
-            //  'attributes': [{
-            //      'trait_type': 'Background Color',
-            //      'value': 'Blue Sherbet'
-            //    },
-            //    {
-            //      'trait_type': 'Coat Color',
-            //      'value': 'Blue'
-            //    },
-            //    {
-            //      'trait_type': 'Hair Style',
-            //      'value': 'Lil Hat'
-            //    }
-            //  ]
-            //}";
-
-
-        }
 
         private async void btnPinata_ClickAsync(object sender, EventArgs e)
         {
