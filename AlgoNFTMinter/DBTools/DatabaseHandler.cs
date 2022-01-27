@@ -13,7 +13,7 @@ namespace AlgoNFTMinter.DBTools
  
         public DatabaseHandler()
         {
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyData.db");
+            var databasePath = Path.Combine(Program.config["databaseLocation"], "MyData.db");
             _db = new SQLiteConnection(databasePath);
             _db.CreateTable<NewAssetData>();
         }

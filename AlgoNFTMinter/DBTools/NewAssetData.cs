@@ -51,6 +51,9 @@ namespace AlgoNFTMinter.DBTools
         [Column("arcJson")]
         public string ArcJson { get; set; }
 
+        [Column("fileLocation")]
+        public string FileLocation { get; set; }
+
         [Column("mintAssetFlag")]
         public bool MintAssetFlag { get; set; } = false;
 

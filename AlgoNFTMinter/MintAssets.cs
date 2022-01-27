@@ -275,6 +275,7 @@ namespace AlgoNFTMinter
 
         private async void btnPinata_ClickAsync(object sender, EventArgs e)
         {
+            //TODO: Get image locations from db field
             var config = new Config
             {
                 ApiKey = Program.config["ipfsKey"],
