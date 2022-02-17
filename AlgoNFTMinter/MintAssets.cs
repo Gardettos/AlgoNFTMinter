@@ -49,13 +49,14 @@ namespace AlgoNFTMinter
 
                     var ap = new AssetParams()
                     {
-                        Clawback = a.Clawback.Equals("") ? null : a.Clawback,
+                        
+                        Clawback = String.IsNullOrEmpty(a.Clawback) ? null : a.Clawback,
                         Creator = a.Creator,
                         Decimals = (int)Convert.ToInt64(a.Decimals), 
                         DefaultFrozen = a.DefaultFrozen, 
-                        Freeze = a.Freeze.Equals("") ? null : a.Freeze,
+                        Freeze = String.IsNullOrEmpty(a.Freeze) ? null : a.Freeze,
                         Manager = a.Manager,
-                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash),
+                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash),//TODO: get this from pinata?
                         Name = a.Name,
                         Reserve = a.Reserve,
                         Total = (ulong?)Convert.ToInt64(a.Total),
@@ -101,7 +102,7 @@ namespace AlgoNFTMinter
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            Program.db.TruncateTable();
+            Program.db.TruncateTable("NewAssetData");
         }
         /// <summary>
         /// This method reads the csv file containing all trait data and formats each row as arc69 json.
