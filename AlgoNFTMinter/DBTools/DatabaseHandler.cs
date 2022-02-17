@@ -16,6 +16,7 @@ namespace AlgoNFTMinter.DBTools
             var databasePath = Path.Combine(Program.config["databaseLocation"], "MyData.db");
             _db = new SQLiteConnection(databasePath);
             _db.CreateTable<NewAssetData>();
+            _db.CreateTable<MessageData>();
         }
 
         public void RunQuery(String query, string paramOne = "", string paramTwo = "")
@@ -30,14 +31,35 @@ namespace AlgoNFTMinter.DBTools
             _db.Insert(data);
         }
 
+        public void AddRecord(MessageData data)
+        {
+            _db.Insert(data);
+        }
+
         public void UpdateRecord(NewAssetData data)
         {
             _db.Update(data);
         }
 
-        public void TruncateTable()
+        public void UpdateRecord(MessageData data)
         {
-            _db.DeleteAll<NewAssetData>();
+            _db.Update(data);
+        }
+
+        public void TruncateTable(String tableName)
+        {
+            switch (tableName)
+            {
+                case "NewAssetData":
+                    _db.DeleteAll<NewAssetData>();
+                    break;
+
+                case "MessageData":
+                    _db.DeleteAll<MessageData>();
+                    break;
+            }
+
+            
         }
 
         public void DropTable(String tableName)
@@ -47,8 +69,12 @@ namespace AlgoNFTMinter.DBTools
 
         public List<NewAssetData> RetrieveData(String sqlString)
         {
-            //var query = conn.Table<Stock>().Where(v => v.Symbol.StartsWith("A"));
             return _db.Query<DBTools.NewAssetData>(sqlString);           
+        }
+
+        public List<MessageData> RetrieveMessageData(String sqlString)
+        {
+            return _db.Query<DBTools.MessageData>(sqlString);
         }
 
         //public void DeleteRecord(string id)

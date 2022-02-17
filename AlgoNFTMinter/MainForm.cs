@@ -26,6 +26,10 @@ namespace AlgoNFTMinter
             {
                 panelMain.Controls.Add(new MintAssets());
             }
+            else if (e.ClickedItem.Text == "Messaging")
+            {
+                panelMain.Controls.Add(new Messaging());
+            }
 
         }
     }

@@ -54,5 +54,44 @@ namespace AlgoNFTMinter.DBTools
         {
             get => spUpdateTransferStatus;
         }
+
+
+        private const string spGetAllMessageData = "SELECT * FROM MessageData;";
+        public static string GetAllMessageData
+        {
+            get => spGetAllMessageData;
+        }
+
+        private const string spUpdateMessage = "UPDATE MessageData SET message = ? WHERE Id = ?;";
+        public static string UpdateMessage
+        {
+            get => spUpdateMessage;
+        }
+
+        private const string spUpdateMessageStatus = "UPDATE MessageData SET sendMessageFlag = ? WHERE Id = ?;";
+        public static string UpdateMessageStatus
+        {
+            get => spUpdateMessageStatus;
+        }
+
+        private const string spGetSendMessages = "SELECT * FROM MessageData WHERE sendMessageFlag = True;";
+        public static string GetSendMessages
+        {
+            get => spGetSendMessages;
+        }
+
+
+        private const string spUpdateRefreshStatus = "UPDATE MessageData SET refreshHolderFlag = ? WHERE Id = ?;";
+        public static string UpdateRefreshStatus
+        {
+            get => spUpdateRefreshStatus;
+        }
+
+        private const string spGetRefreshHolders = "SELECT * FROM MessageData WHERE refreshHolderFlag = True;";
+        public static string GetRefreshHolders
+        {
+            get => spGetRefreshHolders;
+        }
+
     }
 }
