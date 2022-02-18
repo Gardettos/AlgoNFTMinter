@@ -132,7 +132,6 @@ namespace AlgoNFTMinter
                     dgMain.Rows[e.RowIndex].Cells["message"].Value.ToString(),
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
             }
-
         }
 
         private async void btnSendMessage_Click(object sender, EventArgs e)
