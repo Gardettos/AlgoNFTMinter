@@ -158,62 +158,98 @@ namespace AlgoNFTMinter
 
         private void dgMain_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO: Clean up this function
-            string status = string.Empty; //DB stores booleans as 0/1
-            if (dgMain.Columns[e.ColumnIndex].Name == "MintAssetFlag")
-                {
-                switch (dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value)
-                {
-                    case false:
-                        status = "0";
-                        break;
-                    case true:
-                        status = "1";
-                        break;
-                }
-
-                Program.db.RunQuery(dbSP.UpdateMintStatus,
-                    status,
-                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
-            }
-
-            else if (dgMain.Columns[e.ColumnIndex].Name == "OptInFlag")
+            switch (dgMain.Columns[e.ColumnIndex].Name)
             {
-                switch (dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value)
-                {
-                    case false:
-                        status = "0";
-                        break;
-                    case true:
-                        status = "1";
-                        break;
-                }
-
-                Program.db.RunQuery(dbSP.UpdateOptInStatus,
-                    status,
+                case "Clawback":
+                    Program.db.RunQuery(dbSP.UpdateClawback,
+                    dgMain.Rows[e.RowIndex].Cells["clawback"].Value.ToString(),
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
-            }
-
-            else if (dgMain.Columns[e.ColumnIndex].Name == "TransferFlag")
-            {
-                switch (dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value)
-                {
-                    case false:
-                        status = "0";
-                        break;
-                    case true:
-                        status = "1";
-                        break;
-                }
-
-                Program.db.RunQuery(dbSP.UpdateTransferStatus,
-                    status,
+                    break;
+                case "Creator":
+                    Program.db.RunQuery(dbSP.UpdateCreator,
+                    dgMain.Rows[e.RowIndex].Cells["creator"].Value.ToString(),
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
-            }
+                    break;
+                case "Decimals":
+                    Program.db.RunQuery(dbSP.UpdateDecimals,
+                    dgMain.Rows[e.RowIndex].Cells["decimals"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "Freeze":
+                    Program.db.RunQuery(dbSP.UpdateFreeze,
+                    dgMain.Rows[e.RowIndex].Cells["freeze"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "Manager":
+                    Program.db.RunQuery(dbSP.UpdateManager,
+                    dgMain.Rows[e.RowIndex].Cells["manager"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "MetaDataHash":
+                    Program.db.RunQuery(dbSP.UpdateMetaDataHash,
+                    dgMain.Rows[e.RowIndex].Cells["metaDataHash"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "Name":
+                    Program.db.RunQuery(dbSP.UpdateName,
+                    dgMain.Rows[e.RowIndex].Cells["name"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "Reserve":
+                    Program.db.RunQuery(dbSP.UpdateReserve,
+                    dgMain.Rows[e.RowIndex].Cells["reserve"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "Total":
+                    Program.db.RunQuery(dbSP.UpdateTotal,
+                    dgMain.Rows[e.RowIndex].Cells["total"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "UnitName":
+                    Program.db.RunQuery(dbSP.UpdateUnitName,
+                    dgMain.Rows[e.RowIndex].Cells["unitName"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "URL":
+                    Program.db.RunQuery(dbSP.UpdateUrl,
+                    dgMain.Rows[e.RowIndex].Cells["url"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "ArcJson":
+                    Program.db.RunQuery(dbSP.UpdateArcJson,
+                    dgMain.Rows[e.RowIndex].Cells["arcJson"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "FileLocation":
+                    Program.db.RunQuery(dbSP.UpdateFileLocation,
+                    dgMain.Rows[e.RowIndex].Cells["fileLocation"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "MintAssetFlag":
+                    Program.db.RunQuery(dbSP.UpdateMintStatus,
+                    dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "OptInFlag":
+                    Program.db.RunQuery(dbSP.UpdateOptInStatus,
+                    dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "TransferFlag":
+                    Program.db.RunQuery(dbSP.UpdateTransferStatus,
+                    dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
+                case "DefaultFrozen":
+                    Program.db.RunQuery(dbSP.UpdateDefaultFrozen,
+                    dgMain.Rows[e.RowIndex].Cells["DefaultFrozen"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
 
+            }
         }
 
-        private async void btnOptIn_ClickAsync(object sender, EventArgs e)
+            private async void btnOptIn_ClickAsync(object sender, EventArgs e)
         {
 
             var results = Program.db.RetrieveData(dbSP.GetAssetsToOptIn);
