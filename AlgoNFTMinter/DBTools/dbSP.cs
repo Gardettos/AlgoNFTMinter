@@ -141,6 +141,18 @@ namespace AlgoNFTMinter.DBTools
             get => spUpdateFileLocation;
         }
 
+        private const string spGetFileLocation = "SELECT * FROM NewAssetData WHERE fileLocation is null;";
+        public static string GetFileLocation
+        {
+            get => spGetFileLocation;
+        }
+
+        private const string spGetFilesToProcess = "SELECT * FROM NewAssetData WHERE fileLocation not null;";
+        public static string GetFilesToProcess
+        {
+            get => spGetFilesToProcess;
+        }
+
         #endregion mintSps
 
         #region MessageSPs
