@@ -88,16 +88,18 @@ namespace AlgoNFTMinter
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (File.Exists(Program.config["csvPath"]))
-            {       
-                if(txtboxAssetName.Text.Length < 1) throw new Exception("Enter Asset Name");
-                if (txtbxUnitName.Text.Length < 1) throw new Exception("Enter Unit Name");
-                ImportCSVFile(Program.config["csvPath"]);
-            }
-            else
+            if (txtbxUnitName.Text.Length < 1)
             {
-                throw new Exception("Cannot locate csv");
+                MessageBox.Show("Enter Unit Name");
+                return;
             }
+            if (txtboxAssetName.Text.Length < 1) {
+                MessageBox.Show("Enter Asset Name");
+                return;
+            }
+               
+            ImportCSVFile();
+           
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -108,28 +110,39 @@ namespace AlgoNFTMinter
         /// This method reads the csv file containing all trait data and formats each row as arc69 json.
         /// </summary>
         /// <param name="filePath"></param>
-        private void ImportCSVFile(String filePath)
-        {
-            using (var reader = new StreamReader(filePath))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {        
-                var records = csv.GetRecords<dynamic>();
-                var recordList  = Enumerable.ToList(records);
-
-                int i = 1;
-                foreach (var line in recordList)
+        private void ImportCSVFile()
+        {//TODO: update arc69
+            string filePath = String.Empty;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select A File";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var meta_data = "{\"standard\":\"arc69\", \"properties\":" + JsonConvert.SerializeObject(line) + "}";
-                    var Asset = new DBTools.NewAssetData
+                    filePath = openFileDialog.FileName;
+                }
+            }
+
+
+            using (var reader = new StreamReader(filePath)) {
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = csv.GetRecords<dynamic>();
+                    var recordList = Enumerable.ToList(records);
+
+                    int i = 1;
+                    foreach (var line in recordList)
                     {
-                        Name = String.Concat(txtboxAssetName.Text, i.ToString()),
-                        UnitName = String.Concat(txtbxUnitName.Text, i.ToString()),
-                        ArcJson = meta_data,
+                        var meta_data = "{\"standard\":\"arc69\", \"properties\":" + JsonConvert.SerializeObject(line) + "}";
+                        var Asset = new DBTools.NewAssetData
+                        {
+                            Name = String.Concat(txtboxAssetName.Text, i.ToString()),
+                            UnitName = String.Concat(txtbxUnitName.Text, i.ToString()),
+                            ArcJson = meta_data,
+                        };
 
-                    };
-
-                    Program.db.AddRecord(Asset);
-                    i++;
+                        Program.db.AddRecord(Asset);
+                        i++;
+                    }
                 }
             }
 
@@ -141,6 +154,7 @@ namespace AlgoNFTMinter
             Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
 
+            MessageBox.Show("Import Complete!");
         }
 
         private void SetEnvironment(bool indexer = false)
