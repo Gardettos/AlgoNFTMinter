@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using CsvHelper;
-
 using Algorand;
 using Algorand.V2;
 using Algorand.V2.Algod;
@@ -49,14 +48,14 @@ namespace AlgoNFTMinter
 
                     var ap = new AssetParams()
                     {
-                        //TODO: fix MetadataHash
+ 
                         Clawback = String.IsNullOrEmpty(a.Clawback) ? null : a.Clawback,
                         Creator = a.Creator,
                         Decimals = (int)Convert.ToInt64(a.Decimals), 
                         DefaultFrozen = a.DefaultFrozen, 
                         Freeze = String.IsNullOrEmpty(a.Freeze) ? null : a.Freeze,
                         Manager = a.Manager,
-                        //MetadataHash = String.IsNullOrEmpty(a.MetaDataHash) ? null : Encoding.ASCII.GetBytes(a.MetaDataHash),
+                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash.Substring(0, 32)),
                         Name = a.Name,
                         Reserve = a.Reserve,
                         Total = (ulong?)Convert.ToInt64(a.Total),
@@ -357,6 +356,7 @@ namespace AlgoNFTMinter
                     {
                         //File uploaded to Pinata Cloud and can be accessed on IPFS!
                         var cid = response.IpfsHash;
+                        asset.MetaDataHash = cid;
                         asset.URL = string.Concat("ipfs://", cid);
                         Program.db.UpdateRecord(asset);
                     }
@@ -399,5 +399,6 @@ namespace AlgoNFTMinter
             }
             MessageBox.Show("Complete!");
         }
+
     }
 }
