@@ -49,14 +49,14 @@ namespace AlgoNFTMinter
 
                     var ap = new AssetParams()
                     {
-                        
+                        //TODO: fix MetadataHash
                         Clawback = String.IsNullOrEmpty(a.Clawback) ? null : a.Clawback,
                         Creator = a.Creator,
                         Decimals = (int)Convert.ToInt64(a.Decimals), 
                         DefaultFrozen = a.DefaultFrozen, 
                         Freeze = String.IsNullOrEmpty(a.Freeze) ? null : a.Freeze,
                         Manager = a.Manager,
-                        MetadataHash = Encoding.ASCII.GetBytes(a.MetaDataHash),//TODO: get this from pinata?
+                        //MetadataHash = String.IsNullOrEmpty(a.MetaDataHash) ? null : Encoding.ASCII.GetBytes(a.MetaDataHash),
                         Name = a.Name,
                         Reserve = a.Reserve,
                         Total = (ulong?)Convert.ToInt64(a.Total),
@@ -64,7 +64,7 @@ namespace AlgoNFTMinter
                         Url = a.URL, 
                     };
                     
-                   var tx = Utils.GetCreateAssetTransaction(ap, transParams, "asset tx message");
+                   var tx = Utils.GetCreateAssetTransaction(ap, transParams, a.ArcJson);
                     SignedTransaction signedTx = acct1.SignTransaction(tx);
 
                     try
@@ -99,7 +99,7 @@ namespace AlgoNFTMinter
             }
                
             ImportCSVFile();
-           
+            MessageBox.Show("Import Complete!");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -154,7 +154,6 @@ namespace AlgoNFTMinter
             Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
 
-            MessageBox.Show("Import Complete!");
         }
 
         private void SetEnvironment(bool indexer = false)
@@ -263,7 +262,7 @@ namespace AlgoNFTMinter
             }
         }
 
-            private async void btnOptIn_ClickAsync(object sender, EventArgs e)
+        private async void btnOptIn_ClickAsync(object sender, EventArgs e)
         {
 
             var results = Program.db.RetrieveData(dbSP.GetAssetsToOptIn);
@@ -326,7 +325,7 @@ namespace AlgoNFTMinter
 
         private async void btnPinata_ClickAsync(object sender, EventArgs e)
         {
-            //TODO: Get image locations from db field
+
             var config = new Config
             {
                 ApiKey = Program.config["ipfsKey"],
@@ -335,35 +334,70 @@ namespace AlgoNFTMinter
 
             var client = new PinataClient(config);
 
-            var filesToProcess = System.IO.Directory.GetFiles(Program.config["imageDirectory"], "*.png");
 
-            foreach (string filePath in filesToProcess)
+            var results = Program.db.RetrieveData(dbSP.GetFilesToProcess);
+            if (results.Count > 0)
             {
-                var response = await client.Pinning.PinFileToIpfsAsync(content =>
+                foreach (NewAssetData asset in results)
                 {
-                    var fl = new System.Net.Http.ByteArrayContent(System.IO.File.ReadAllBytes(@filePath));
-                    fl.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("image/png");
-                    var fldata = new
+                    var file = asset.FileLocation;
+                    var response = await client.Pinning.PinFileToIpfsAsync(content =>
                     {
-                        filepath = $"fileName"
-                    };
+                        var fl = new System.Net.Http.ByteArrayContent(System.IO.File.ReadAllBytes(@file));
+                        fl.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("image/png");
+                        var fldata = new
+                        {
+                            filepath = $"fileName"
+                        };
 
-                    content.AddPinataFile(fl, fldata.filepath);
-                });
+                        content.AddPinataFile(fl, fldata.filepath);
+                    });
 
-                if (response.IsSuccess)
-                {
-                    //File uploaded to Pinata Cloud and can be accessed on IPFS!
-                    var cid = response.IpfsHash;
-                    Console.WriteLine(cid);
+                    if (response.IsSuccess)
+                    {
+                        //File uploaded to Pinata Cloud and can be accessed on IPFS!
+                        var cid = response.IpfsHash;
+                        asset.URL = string.Concat("ipfs://", cid);
+                        Program.db.UpdateRecord(asset);
+                    }
                 }
             }
+
+            MessageBox.Show("Upload Complete!");
+
         }
 
         private void btnRefreshTable_Click(object sender, EventArgs e)
         {
             var results = Program.db.RetrieveData(dbSP.GetAllData);
             dgMain.DataSource = results;
+        }
+
+        private void btnImageLocation_Click(object sender, EventArgs e)
+        {
+            //TODO: add check if trait import count matches image count
+            var results = Program.db.RetrieveData(dbSP.GetFileLocation);
+            if (results.Count > 0)
+            {
+                string filePath = String.Empty;
+                using (FolderBrowserDialog openFolderDialog = new FolderBrowserDialog())
+                {
+                    DialogResult dialogResult = openFolderDialog.ShowDialog();
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        filePath = openFolderDialog.SelectedPath;
+                    }
+                }
+                var filesToProcess = System.IO.Directory.GetFiles(filePath, "*.png");
+                int i = 0;
+                foreach(NewAssetData asset in results)
+                {
+                    asset.FileLocation = filesToProcess[i];
+                    Program.db.UpdateRecord(asset);
+                    i++;
+                }                    
+            }
+            MessageBox.Show("Complete!");
         }
     }
 }

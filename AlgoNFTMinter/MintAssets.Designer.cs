@@ -44,13 +44,14 @@ namespace AlgoNFTMinter
             this.txtbxUnitName = new System.Windows.Forms.TextBox();
             this.txtboxAssetName = new System.Windows.Forms.TextBox();
             this.lblAsset = new System.Windows.Forms.Label();
+            this.btnImageLocation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(369, 3);
+            this.btnClear.Location = new System.Drawing.Point(3, 9);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(86, 24);
             this.btnClear.TabIndex = 8;
@@ -60,7 +61,7 @@ namespace AlgoNFTMinter
             // 
             // btnRefreshTable
             // 
-            this.btnRefreshTable.Location = new System.Drawing.Point(369, 33);
+            this.btnRefreshTable.Location = new System.Drawing.Point(3, 39);
             this.btnRefreshTable.Name = "btnRefreshTable";
             this.btnRefreshTable.Size = new System.Drawing.Size(86, 23);
             this.btnRefreshTable.TabIndex = 7;
@@ -70,9 +71,9 @@ namespace AlgoNFTMinter
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(5, 13);
+            this.btnImport.Location = new System.Drawing.Point(334, 0);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(79, 43);
+            this.btnImport.Size = new System.Drawing.Size(122, 27);
             this.btnImport.TabIndex = 6;
             this.btnImport.Text = "Import Trait Data";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -166,7 +167,7 @@ namespace AlgoNFTMinter
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(113, 14);
+            this.lblUnit.Location = new System.Drawing.Point(111, 11);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(64, 15);
             this.lblUnit.TabIndex = 16;
@@ -174,14 +175,14 @@ namespace AlgoNFTMinter
             // 
             // txtbxUnitName
             // 
-            this.txtbxUnitName.Location = new System.Drawing.Point(183, 10);
+            this.txtbxUnitName.Location = new System.Drawing.Point(181, 7);
             this.txtbxUnitName.Name = "txtbxUnitName";
             this.txtbxUnitName.Size = new System.Drawing.Size(139, 23);
             this.txtbxUnitName.TabIndex = 17;
             // 
             // txtboxAssetName
             // 
-            this.txtboxAssetName.Location = new System.Drawing.Point(183, 39);
+            this.txtboxAssetName.Location = new System.Drawing.Point(181, 36);
             this.txtboxAssetName.Name = "txtboxAssetName";
             this.txtboxAssetName.Size = new System.Drawing.Size(139, 23);
             this.txtboxAssetName.TabIndex = 18;
@@ -189,16 +190,27 @@ namespace AlgoNFTMinter
             // lblAsset
             // 
             this.lblAsset.AutoSize = true;
-            this.lblAsset.Location = new System.Drawing.Point(107, 38);
+            this.lblAsset.Location = new System.Drawing.Point(105, 35);
             this.lblAsset.Name = "lblAsset";
             this.lblAsset.Size = new System.Drawing.Size(70, 15);
             this.lblAsset.TabIndex = 19;
             this.lblAsset.Text = "Asset Name";
             // 
+            // btnImageLocation
+            // 
+            this.btnImageLocation.Location = new System.Drawing.Point(334, 37);
+            this.btnImageLocation.Name = "btnImageLocation";
+            this.btnImageLocation.Size = new System.Drawing.Size(122, 23);
+            this.btnImageLocation.TabIndex = 20;
+            this.btnImageLocation.Text = "Set Image Location";
+            this.btnImageLocation.UseVisualStyleBackColor = true;
+            this.btnImageLocation.Click += new System.EventHandler(this.btnImageLocation_Click);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnImageLocation);
             this.Controls.Add(this.lblAsset);
             this.Controls.Add(this.txtboxAssetName);
             this.Controls.Add(this.txtbxUnitName);
@@ -238,5 +250,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.TextBox txtbxUnitName;
         private System.Windows.Forms.TextBox txtboxAssetName;
         private System.Windows.Forms.Label lblAsset;
+        private System.Windows.Forms.Button btnImageLocation;
     }
 }
