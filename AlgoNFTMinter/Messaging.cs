@@ -89,48 +89,23 @@ namespace AlgoNFTMinter
 
         private void dgMain_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO: Clean up this function
-            string status = string.Empty; //DB stores booleans as 0/1
-            if (dgMain.Columns[e.ColumnIndex].Name == "SendMessageFlag")
+            switch (dgMain.Columns[e.ColumnIndex].Name)
             {
-                switch (dgMain.Rows[e.RowIndex].Cells["SendMessageFlag"].Value)
-                {
-                    case false:
-                        status = "0";
-                        break;
-                    case true:
-                        status = "1";
-                        break;
-                }
-
-                Program.db.RunQuery(dbSP.UpdateMessageStatus,
-                    status,
+                case "SendMessageFlag":
+                    Program.db.RunQuery(dbSP.UpdateMessageStatus,
+                    dgMain.Rows[e.RowIndex].Cells["SendMessageFlag"].Value.Equals(false) ? "0" : "1",
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
-            }
-
-            else if (dgMain.Columns[e.ColumnIndex].Name == "RefreshHolderFlag")
-            {
-                switch (dgMain.Rows[e.RowIndex].Cells["RefreshHolderFlag"].Value)
-                {
-                    case false:
-                        status = "0";
-                        break;
-                    case true:
-                        status = "1";
-                        break;
-                }
-
-                Program.db.RunQuery(dbSP.UpdateRefreshStatus,
-                    status,
+                    break;
+                case "RefreshHolderFlag":
+                    Program.db.RunQuery(dbSP.UpdateRefreshStatus,
+                    dgMain.Rows[e.RowIndex].Cells["RefreshHolderFlag"].Value.Equals(false) ? "0" : "1",
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
-            }
-
-            else if (dgMain.Columns[e.ColumnIndex].Name == "Message")
-            {
-
-                Program.db.RunQuery(dbSP.UpdateMessage,
-                    dgMain.Rows[e.RowIndex].Cells["message"].Value.ToString(),
+                    break;
+                case "Message":
+                    Program.db.RunQuery(dbSP.UpdateMessage,
+                    dgMain.Rows[e.RowIndex].Cells["Message"].Value.Equals(false) ? "0" : "1",
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
             }
         }
 
