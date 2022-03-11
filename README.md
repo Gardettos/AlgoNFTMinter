@@ -1,6 +1,7 @@
 # AlgoNFTMinter
-I started initial work on this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs.
-As of 1/26, I have decided to resume some development on this but it is still very much a work in progress
+I created this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. 
+Services provided as of 3/11: Batch minting, opt-ins, and transfers.
+WIP: 0 Txn fee messaging service and batch updating ARC69
 
 Required packages:
 ```
