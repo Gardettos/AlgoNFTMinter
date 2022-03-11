@@ -82,6 +82,9 @@ namespace AlgoNFTMinter
                 foreach (NewAssetData a in results)
                     Program.db.UpdateRecord(a);
 
+                MessageBox.Show("Minting complete!");
+                var resultsRefresh = Program.db.RetrieveData(dbSP.GetAllData);
+                dgMain.DataSource = resultsRefresh;
             }
         }
 
@@ -98,12 +101,19 @@ namespace AlgoNFTMinter
             }
                
             ImportCSVFile();
-            MessageBox.Show("Import Complete!");
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            Program.db.TruncateTable("NewAssetData");
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to clear the table?","Clear Table" ,MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Program.db.TruncateTable("NewAssetData");
+                var results = Program.db.RetrieveData(dbSP.GetAllData);
+                dgMain.DataSource = results;
+            }
+            else return;
+
         }
         /// <summary>
         /// This method reads the csv file containing all trait data and formats each row as arc69 json.
@@ -152,7 +162,9 @@ namespace AlgoNFTMinter
             Program.db.RunQuery("UPDATE NewAssetData SET creator = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET manager = ?", address);
             Program.db.RunQuery("UPDATE NewAssetData SET reserve = ?", address);
-
+            MessageBox.Show("Import Complete!");
+            var results = Program.db.RetrieveData(dbSP.GetAllData);
+            dgMain.DataSource = results;
         }
 
         private void SetEnvironment(bool indexer = false)
@@ -287,8 +299,9 @@ namespace AlgoNFTMinter
                         Console.WriteLine(wait);
                     }
                     catch (Exception ex) { }
-                }                
-            }
+                }
+                MessageBox.Show("Opt in complete!");
+            }         
         }
 
         private async void btnTransfer_ClickAsync(object sender, EventArgs e)
@@ -318,7 +331,8 @@ namespace AlgoNFTMinter
                     }
                     catch (Exception ex){}
                 }
-            }
+                MessageBox.Show("Transfer complete!");
+            }       
         }
 
 
@@ -361,10 +375,10 @@ namespace AlgoNFTMinter
                         Program.db.UpdateRecord(asset);
                     }
                 }
+                MessageBox.Show("Upload Complete!");
+                var resultsRefresh = Program.db.RetrieveData(dbSP.GetAllData);
+                dgMain.DataSource = resultsRefresh;
             }
-
-            MessageBox.Show("Upload Complete!");
-
         }
 
         private void btnRefreshTable_Click(object sender, EventArgs e)
@@ -375,7 +389,6 @@ namespace AlgoNFTMinter
 
         private void btnImageLocation_Click(object sender, EventArgs e)
         {
-            //TODO: add check if trait import count matches image count
             var results = Program.db.RetrieveData(dbSP.GetFileLocation);
             if (results.Count > 0)
             {
@@ -389,15 +402,19 @@ namespace AlgoNFTMinter
                     }
                 }
                 var filesToProcess = System.IO.Directory.GetFiles(filePath, "*.png");
+                if (results.Count != filesToProcess.Length) { MessageBox.Show("File count does not match trait count. Please review!"); return; }
                 int i = 0;
                 foreach(NewAssetData asset in results)
                 {
                     asset.FileLocation = filesToProcess[i];
                     Program.db.UpdateRecord(asset);
                     i++;
-                }                    
+                }
+                MessageBox.Show("Complete!");
+                var resultsRefresh = Program.db.RetrieveData(dbSP.GetAllData);
+                dgMain.DataSource = resultsRefresh;
             }
-            MessageBox.Show("Complete!");
+           
         }
 
     }
