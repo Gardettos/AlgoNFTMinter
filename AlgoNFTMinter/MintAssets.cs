@@ -35,7 +35,6 @@ namespace AlgoNFTMinter
             var results = Program.db.RetrieveData(dbSP.GetAssetsToMint);
             if (results.Count > 0)
             {
-                //Initialize connections 
                 SetEnvironment();                        
                 Account acct1 = new Account(Program.config["account1_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
@@ -115,12 +114,9 @@ namespace AlgoNFTMinter
             else return;
 
         }
-        /// <summary>
-        /// This method reads the csv file containing all trait data and formats each row as arc69 json.
-        /// </summary>
-        /// <param name="filePath"></param>
+
         private void ImportCSVFile()
-        {//TODO: update arc69
+        {//TODO: finish additioal arc69 updates
             string filePath = String.Empty;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -279,7 +275,6 @@ namespace AlgoNFTMinter
             var results = Program.db.RetrieveData(dbSP.GetAssetsToOptIn);
             if (results.Count > 0)
             {
-                //Initialize connections 
                 SetEnvironment();
                 Account acct2 = new Account(Program.config["account2_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);

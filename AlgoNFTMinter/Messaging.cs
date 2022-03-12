@@ -114,7 +114,6 @@ namespace AlgoNFTMinter
             var results = Program.db.RetrieveMessageData(dbSP.GetAllMessageData);
             if (results.Count > 0)
             {
-                //Initialize connections 
                 SetEnvironment();
                 Account acct1 = new Account(Program.config["account1_mnemonic"]);
                 var httpClient = HttpClientConfigurator.ConfigureHttpClient(ALGOD_API_ADDR, Program.config["ALGOD_API_TOKEN"]);
