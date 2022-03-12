@@ -13,7 +13,6 @@ namespace AlgoNFTMinter.DBTools
         {
             get => spGetAllData;
         }
-
         private const string spGetAssetsToMint = "SELECT * FROM NewAssetData WHERE mintAssetFlag = True;";
         public static string GetAssetsToMint
         {
@@ -44,16 +43,34 @@ namespace AlgoNFTMinter.DBTools
             get => spUpdateMintStatus;
         }
 
+        private const string spUpdateAllMintStatus = "UPDATE NewAssetData SET mintAssetFlag = ?;";
+        public static string UpdateAllMintStatus
+        {
+            get => spUpdateAllMintStatus;
+        }
+
         private const string spUpdateOptInStatus = "UPDATE NewAssetData SET optInFlag = ? WHERE Id = ?;";
         public static string UpdateOptInStatus
         {
             get => spUpdateOptInStatus;
         }
 
+        private const string spUpdateAllOptInStatus = "UPDATE NewAssetData SET optInFlag = ?;";
+        public static string UpdateAllOptInStatus
+        {
+            get => spUpdateAllOptInStatus;
+        }
+
         private const string spUpdateTransferStatus = "UPDATE NewAssetData SET transferFlag = ? WHERE Id = ?;";
         public static string UpdateTransferStatus
         {
             get => spUpdateTransferStatus;
+        }
+
+        private const string spUpdateAllTransferStatus = "UPDATE NewAssetData SET transferFlag = ?;";
+        public static string UpdateAllTransferStatus
+        {
+            get => spUpdateAllTransferStatus;
         }
 
         private const string spUpdateClawback = "UPDATE NewAssetData SET clawback = ? WHERE Id = ?;";

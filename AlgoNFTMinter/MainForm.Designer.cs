@@ -37,9 +37,10 @@ namespace AlgoNFTMinter
             // 
             // panelMain
             // 
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(0, 24);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(800, 426);
+            this.panelMain.Size = new System.Drawing.Size(1509, 637);
             this.panelMain.TabIndex = 1;
             // 
             // menuStrip
@@ -48,7 +49,7 @@ namespace AlgoNFTMinter
             this.tsMenuItemMintAssets});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1509, 24);
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "menuStrip";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -63,7 +64,8 @@ namespace AlgoNFTMinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1509, 661);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
