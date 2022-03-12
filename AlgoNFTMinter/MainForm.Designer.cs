@@ -32,7 +32,6 @@ namespace AlgoNFTMinter
             this.panelMain = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.tsMenuItemMintAssets = new System.Windows.Forms.ToolStripMenuItem();
-            this.messagingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,8 +45,7 @@ namespace AlgoNFTMinter
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsMenuItemMintAssets,
-            this.messagingToolStripMenuItem});
+            this.tsMenuItemMintAssets});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(800, 24);
@@ -60,12 +58,6 @@ namespace AlgoNFTMinter
             this.tsMenuItemMintAssets.Name = "tsMenuItemMintAssets";
             this.tsMenuItemMintAssets.Size = new System.Drawing.Size(80, 20);
             this.tsMenuItemMintAssets.Text = "Mint Assets";
-            // 
-            // messagingToolStripMenuItem
-            // 
-            this.messagingToolStripMenuItem.Name = "messagingToolStripMenuItem";
-            this.messagingToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.messagingToolStripMenuItem.Text = "Messaging";
             // 
             // MainForm
             // 
@@ -88,7 +80,6 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsMenuItemMintAssets;
-        private System.Windows.Forms.ToolStripMenuItem messagingToolStripMenuItem;
     }
 }
 
