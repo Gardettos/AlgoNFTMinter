@@ -5,7 +5,7 @@ Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers
 WIP: batch updating ARC69
  
 
-
+Requirements:
 * Application only runs on MSFT Windows OS
 	* This is a Windows Forms Application built in C# .NET Core 3.1
 * Visual Studio - I'm using the Community 2019 edition. 
