@@ -30,3 +30,20 @@ Pinata.Client
 sqlite-net-pcl
 CsvHelper
 ```
+
+Setting Up:
+* Once Visual Studio is installed, you will first need to install all the required packages above via NuGet. 
+	* In the dropdown select: Project -> Manage NuGet Packages
+	* Select 'Browse' and then search for and install all the packages listed above
+![image](https://user-images.githubusercontent.com/77548895/163883714-302805a1-9e3a-4f02-8341-909fc3dddb6f.png)
+![image](https://user-images.githubusercontent.com/77548895/163883845-8037c47c-7828-4951-81c5-e1b5e194c0ba.png)
+	
+	
+* Next you will need to update the configuration file with our required values
+	* Open up 'AppSettings.json' and populate with our values
+	* The file should look something like the below example 
+	
+![image](https://user-images.githubusercontent.com/77548895/163884430-c125b209-b9d1-4f73-ba86-78389b5f96b2.png)
+![image](https://user-images.githubusercontent.com/77548895/163884819-5b4db6c2-6d3a-485a-9870-c22e8b44df46.png)
+
+*Note: This application uses the open source sqlite-net-pcl library to store our data. The databaseLocation variable is the location of the folder we want the  database file to be saved to. You will never have to manually interact with the file, but the location to save it to is something you will neeed to decide on before running. It is a small file ( <1 MB) 
