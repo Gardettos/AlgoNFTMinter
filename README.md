@@ -16,7 +16,7 @@ System Requirements:
 	* If you need a key, you can sign up and get one [here](https://www.purestake.com/technology/algorand-api/)
 	* It will be the same API key for both Main Net, Test Net, and the Indexers
 * IPFS/Pinata API Key and Secret
-	*Get one [here](https://www.pinata.cloud/)
+	* Get one [here](https://www.pinata.cloud/)
 * Private key mnemonic for creator account
 	* If you plan to Opt-In/Transfer to a second wallet then you will need that wallets mnemonic as well
 	
