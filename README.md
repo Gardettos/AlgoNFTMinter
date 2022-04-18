@@ -4,8 +4,7 @@ I created this application to give Algorand NFT creators a desktop tool with a U
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads
 WIP: batch updating ARC69
  
-
-Requirements:
+System Requirements:
 * Application only runs on MSFT Windows OS
 	* This is a Windows Forms Application built in C# .NET Core 3.1
 * Visual Studio - I'm using the Community 2019 edition. 
@@ -20,10 +19,7 @@ Requirements:
 	*Get one [here](https://www.pinata.cloud/)
 * Private key mnemonic for creator account
 	* If you plan to Opt-In/Transfer to a second wallet then you will need that wallets mnemonic as well
-* Trait data formatted in CSV file
-	* Initial buildout creates a basic ARC69 JSON string with this data
-
-
+	
 Required packages:
 ```
 Microsoft.Extensions.Configuration
