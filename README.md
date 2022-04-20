@@ -34,7 +34,7 @@ CsvHelper
 ```
 
 Setting Up:
-* Once Visual Studio is installed, you will first need to install all the required packages above via NuGet. 
+* Once Visual Studio is installed, you will then need to install all the required packages above via NuGet. 
 	* In the dropdown select: Project -> Manage NuGet Packages
 	* Select 'Browse' and then search for and install all the packages listed above
 ![image](https://user-images.githubusercontent.com/77548895/163883714-302805a1-9e3a-4f02-8341-909fc3dddb6f.png)
