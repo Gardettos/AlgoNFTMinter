@@ -35,6 +35,7 @@ CsvHelper
 
 Setting Up:
 * Once Visual Studio is installed, you will then need to install all the required packages above via NuGet. 
+	* Open the .sln file found in this repo with VS
 	* In the dropdown select: Project -> Manage NuGet Packages
 	* Select 'Browse' and then search for and install all the packages listed above
 ![image](https://user-images.githubusercontent.com/77548895/163883714-302805a1-9e3a-4f02-8341-909fc3dddb6f.png)
@@ -42,7 +43,7 @@ Setting Up:
 	
 	
 * Next you will need to update the configuration file with our required values
-	* Open up 'AppSettings.json' and populate
+	* In the solution explorer, open up 'AppSettings.json' and populate
 	* The file should look something like the below example 
 	
 ![image](https://user-images.githubusercontent.com/77548895/163884430-c125b209-b9d1-4f73-ba86-78389b5f96b2.png)
