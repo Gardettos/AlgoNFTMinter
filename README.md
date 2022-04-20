@@ -3,7 +3,7 @@
 
 I created this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. This initial buildout is specific for minting with ARC69 - trait data must be in CSV format. 
 
-Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads
+Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads  
 WIP: batch updating ARC69
  
 System Requirements:
