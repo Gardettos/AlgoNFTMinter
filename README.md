@@ -6,6 +6,9 @@ I created this application to give Algorand NFT creators a desktop tool with a U
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads  
 WIP: batch updating ARC69
  
+![image](https://user-images.githubusercontent.com/77548895/164338076-4685dfe5-6f54-41d6-9da7-113fba86f4f5.png)
+
+ 
 System Requirements:
 * Application only runs on MSFT Windows OS
 	* This is a Windows Forms Application built in C# .NET Core 3.1
