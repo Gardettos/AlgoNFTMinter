@@ -1,4 +1,6 @@
 # AlgoNFTMinter
+***Note: This readme is a WIP***
+
 I created this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. This initial buildout is specific for minting with ARC69 - trait data must be in CSV format. 
 
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads
@@ -46,4 +48,6 @@ Setting Up:
 ![image](https://user-images.githubusercontent.com/77548895/163884430-c125b209-b9d1-4f73-ba86-78389b5f96b2.png)
 ![image](https://user-images.githubusercontent.com/77548895/163884819-5b4db6c2-6d3a-485a-9870-c22e8b44df46.png)
 
-*Note: This application uses the open source sqlite-net-pcl library to store our data. The value assigned to databaseLocation is the location of the folder we want the  database file to be saved to. You will never have to manually interact with the file, but the location to save it to is something you will neeed to decide on before running. It is a small file ( <1 MB) 
+***Note: This application uses the open source sqlite-net-pcl library to store our data. The value assigned to databaseLocation is the location of the folder we want the  database file to be saved to. You will never have to manually interact with the file, but the location to save it to is something you will neeed to decide on before running. It is a small file ( <1 MB)***
+
+
