@@ -51,4 +51,5 @@ Setting Up:
 
 ***Note: This application uses the open source sqlite-net-pcl library to store our data. The value assigned to databaseLocation is the location of the folder we want the  database file to be saved to. You will never have to manually interact with the file, but the location to save it to is something you will neeed to decide on before running. It is a small file ( <1 MB)***
 
-
+Running Application:  
+***This is a WIP***
