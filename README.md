@@ -6,7 +6,7 @@ I created this application to give Algorand NFT creators a desktop tool with a U
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads  
 WIP: batch updating ARC69
  
-![image](https://user-images.githubusercontent.com/77548895/164338076-4685dfe5-6f54-41d6-9da7-113fba86f4f5.png)
+![image](https://user-images.githubusercontent.com/77548895/165172221-9299b8e4-7cd8-4930-b81c-a5745ac21800.png)
 
  
 System Requirements:
