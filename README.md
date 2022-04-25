@@ -1,4 +1,6 @@
 # AlgoNFTMinter
+![image](https://user-images.githubusercontent.com/77548895/165179792-6c41b9c0-d247-4e74-a7ec-0742477cdfca.png)
+
 ***Note: This readme is a WIP***
 
 I created this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. This initial buildout is specific for minting with ARC69 - trait data must be in CSV format. 
@@ -6,7 +8,6 @@ I created this application to give Algorand NFT creators a desktop tool with a U
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads  
 WIP: batch updating ARC69
  
-![image](https://user-images.githubusercontent.com/77548895/165172221-9299b8e4-7cd8-4930-b81c-a5745ac21800.png)
 
  
 System Requirements:
