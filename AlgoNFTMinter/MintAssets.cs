@@ -220,6 +220,11 @@ namespace AlgoNFTMinter
                     dgMain.Rows[e.RowIndex].Cells["fileLocation"].Value.ToString(),
                     dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
+                case "PinataFlag":
+                    Program.db.RunQuery(dbSP.UpdatePinataStatus,
+                    dgMain.Rows[e.RowIndex].Cells["PinataFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    break;
                 case "MintAssetFlag":
                     Program.db.RunQuery(dbSP.UpdateMintStatus,
                     dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.Equals(false) ? "0" : "1",
@@ -316,18 +321,18 @@ namespace AlgoNFTMinter
         private async void btnPinata_ClickAsync(object sender, EventArgs e)
         {
 
-            var config = new Config
-            {
-                ApiKey = Program.config["ipfsKey"],
-                ApiSecret = Program.config["ipfsSecret"]
-            };
-
-            var client = new PinataClient(config);
-
-
             var results = Program.db.RetrieveData(dbSP.GetFilesToProcess);
             if (results.Count > 0)
             {
+
+                var config = new Config
+                {
+                    ApiKey = Program.config["ipfsKey"],
+                    ApiSecret = Program.config["ipfsSecret"]
+                };
+
+                var client = new PinataClient(config);
+
                 foreach (NewAssetData asset in results)
                 {
                     var file = asset.FileLocation;
@@ -355,6 +360,7 @@ namespace AlgoNFTMinter
                 MessageBox.Show("Upload Complete!");
                 RefreshGrid();
             }
+            else MessageBox.Show("No assets flagged to be uploaded to Pinata!");
         }
 
         private void btnRefreshTable_Click(object sender, EventArgs e)
@@ -491,6 +497,18 @@ namespace AlgoNFTMinter
                 MessageBox.Show("Complete!");
                 RefreshGrid();
             }
+        }
+
+        private void setAllTrueToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllPinataStatus, "1");
+            RefreshGrid();
+        }
+
+        private void setAllFalseToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllPinataStatus, "0");
+            RefreshGrid();
         }
     }
 }

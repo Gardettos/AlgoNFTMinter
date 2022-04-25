@@ -54,6 +54,9 @@ namespace AlgoNFTMinter.DBTools
         [Column("fileLocation")]
         public string FileLocation { get; set; }
 
+        [Column("pinataFlag")]
+        public bool PinataFlag { get; set; } = false;
+
         [Column("mintAssetFlag")]
         public bool MintAssetFlag { get; set; } = false;
 

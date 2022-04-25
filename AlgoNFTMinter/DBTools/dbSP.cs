@@ -164,10 +164,22 @@ namespace AlgoNFTMinter.DBTools
             get => spGetFileLocation;
         }
 
-        private const string spGetFilesToProcess = "SELECT * FROM NewAssetData WHERE fileLocation not null;";
+        private const string spGetFilesToProcess = "SELECT * FROM NewAssetData WHERE pinataFlag = True;";
         public static string GetFilesToProcess
         {
             get => spGetFilesToProcess;
+        }
+
+        private const string spUpdatePinataStatus = "UPDATE NewAssetData SET pinataFlag = ? WHERE Id = ?;";
+        public static string UpdatePinataStatus
+        {
+            get => spUpdatePinataStatus;
+        }
+
+        private const string spUpdateAllPinataStatus = "UPDATE NewAssetData SET pinataFlag = ?;";
+        public static string UpdateAllPinataStatus
+        {
+            get => spUpdateAllPinataStatus;
         }
 
         #endregion mintSps

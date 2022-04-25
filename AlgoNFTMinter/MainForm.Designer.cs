@@ -38,7 +38,7 @@ namespace AlgoNFTMinter
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(2278, 1102);
+            this.panelMain.Size = new System.Drawing.Size(2458, 1102);
             this.panelMain.TabIndex = 1;
             // 
             // MainForm
@@ -46,7 +46,7 @@ namespace AlgoNFTMinter
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(2278, 1102);
+            this.ClientSize = new System.Drawing.Size(2458, 1102);
             this.Controls.Add(this.panelMain);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";

@@ -60,6 +60,9 @@ namespace AlgoNFTMinter
             this.transferStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setAllTrueToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.setAllFalseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pinataStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAllTrueToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setAllFalseToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -79,16 +82,14 @@ namespace AlgoNFTMinter
             // dgMain
             // 
             this.dgMain.AllowUserToOrderColumns = true;
-            this.dgMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMain.Location = new System.Drawing.Point(0, 0);
             this.dgMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgMain.Name = "dgMain";
             this.dgMain.RowHeadersWidth = 62;
             this.dgMain.RowTemplate.Height = 25;
-            this.dgMain.Size = new System.Drawing.Size(2274, 961);
+            this.dgMain.Size = new System.Drawing.Size(2458, 961);
             this.dgMain.TabIndex = 5;
             this.dgMain.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMain_CellValueChanged);
             // 
@@ -98,7 +99,7 @@ namespace AlgoNFTMinter
             this.panel1.Location = new System.Drawing.Point(0, 141);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2274, 961);
+            this.panel1.Size = new System.Drawing.Size(2458, 961);
             this.panel1.TabIndex = 0;
             // 
             // radioTest
@@ -205,7 +206,7 @@ namespace AlgoNFTMinter
             this.updateStatusFlagsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2278, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(2458, 33);
             this.menuStrip1.TabIndex = 29;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -276,7 +277,8 @@ namespace AlgoNFTMinter
             this.updateStatusFlagsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mintStatusToolStripMenuItem,
             this.optInStatusToolStripMenuItem,
-            this.transferStatusToolStripMenuItem});
+            this.transferStatusToolStripMenuItem,
+            this.pinataStatusToolStripMenuItem});
             this.updateStatusFlagsToolStripMenuItem.Name = "updateStatusFlagsToolStripMenuItem";
             this.updateStatusFlagsToolStripMenuItem.Size = new System.Drawing.Size(185, 29);
             this.updateStatusFlagsToolStripMenuItem.Text = "Update Status Flags";
@@ -350,6 +352,29 @@ namespace AlgoNFTMinter
             this.setAllFalseToolStripMenuItem2.Text = "Set All False";
             this.setAllFalseToolStripMenuItem2.Click += new System.EventHandler(this.setAllFalseToolStripMenuItem2_Click);
             // 
+            // pinataStatusToolStripMenuItem
+            // 
+            this.pinataStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.setAllTrueToolStripMenuItem3,
+            this.setAllFalseToolStripMenuItem3});
+            this.pinataStatusToolStripMenuItem.Name = "pinataStatusToolStripMenuItem";
+            this.pinataStatusToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
+            this.pinataStatusToolStripMenuItem.Text = "Pinata Status";
+            // 
+            // setAllTrueToolStripMenuItem3
+            // 
+            this.setAllTrueToolStripMenuItem3.Name = "setAllTrueToolStripMenuItem3";
+            this.setAllTrueToolStripMenuItem3.Size = new System.Drawing.Size(207, 34);
+            this.setAllTrueToolStripMenuItem3.Text = "Set All True";
+            this.setAllTrueToolStripMenuItem3.Click += new System.EventHandler(this.setAllTrueToolStripMenuItem3_Click);
+            // 
+            // setAllFalseToolStripMenuItem3
+            // 
+            this.setAllFalseToolStripMenuItem3.Name = "setAllFalseToolStripMenuItem3";
+            this.setAllFalseToolStripMenuItem3.Size = new System.Drawing.Size(207, 34);
+            this.setAllFalseToolStripMenuItem3.Text = "Set All False";
+            this.setAllFalseToolStripMenuItem3.Click += new System.EventHandler(this.setAllFalseToolStripMenuItem3_Click);
+            // 
             // MintAssets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -368,7 +393,7 @@ namespace AlgoNFTMinter
             this.Controls.Add(this.menuStrip1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MintAssets";
-            this.Size = new System.Drawing.Size(2278, 1102);
+            this.Size = new System.Drawing.Size(2458, 1102);
             ((System.ComponentModel.ISupportInitialize)(this.dgMain)).EndInit();
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -410,5 +435,8 @@ namespace AlgoNFTMinter
         private System.Windows.Forms.ToolStripMenuItem runProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importCSVTraitDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectImageFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pinataStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAllTrueToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem setAllFalseToolStripMenuItem3;
     }
 }
