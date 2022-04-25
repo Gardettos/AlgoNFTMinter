@@ -77,14 +77,11 @@ namespace AlgoNFTMinter.DBTools
             return _db.Query<DBTools.MessageData>(sqlString);
         }
 
-        //public void DeleteRecord(string id)
-        //{
-        //    _db.Delete<AssetData>(id);
-        //}
+        public void DeleteRecord(string id)
+        {
+            _db.Delete<NewAssetData>(id);
+        }
 
-        //public IEnumerable<AssetData> QueryAssets(AssetData asset)
-        //{
-        //    return _db.Query<AssetData>("select * from AssetData where id = ?", asset.Id);
-        //}
+
     }
 }

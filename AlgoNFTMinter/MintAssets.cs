@@ -28,6 +28,7 @@ namespace AlgoNFTMinter
         public MintAssets()
         {
             InitializeComponent();
+            RefreshGrid();
         }
 
         private async void btnMint_Click(object sender, EventArgs e)
@@ -88,33 +89,6 @@ namespace AlgoNFTMinter
             {
                 MessageBox.Show("Select assets to mint!");
             }
-        }
-
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            if (txtbxUnitName.Text.Length < 1)
-            {
-                MessageBox.Show("Enter Unit Name");
-                return;
-            }
-            if (txtboxAssetName.Text.Length < 1) {
-                MessageBox.Show("Enter Asset Name");
-                return;
-            }
-               
-            ImportCSVFile();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to clear the table?","Clear Table" ,MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                Program.db.TruncateTable("NewAssetData");
-                RefreshGrid();
-            }
-            else return;
-
         }
 
         private void ImportCSVFile()
@@ -183,88 +157,88 @@ namespace AlgoNFTMinter
             {
                 case "Clawback":
                     Program.db.RunQuery(dbSP.UpdateClawback,
-                        dgMain.Rows[e.RowIndex].Cells["clawback"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["clawback"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Creator":
                     Program.db.RunQuery(dbSP.UpdateCreator,
-                        dgMain.Rows[e.RowIndex].Cells["creator"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["creator"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Decimals":
                     Program.db.RunQuery(dbSP.UpdateDecimals,
-                        dgMain.Rows[e.RowIndex].Cells["decimals"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["decimals"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Freeze":
                     Program.db.RunQuery(dbSP.UpdateFreeze,
-                        dgMain.Rows[e.RowIndex].Cells["freeze"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["freeze"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Manager":
                     Program.db.RunQuery(dbSP.UpdateManager,
-                        dgMain.Rows[e.RowIndex].Cells["manager"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["manager"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "MetaDataHash":
                     Program.db.RunQuery(dbSP.UpdateMetaDataHash,
-                        dgMain.Rows[e.RowIndex].Cells["metaDataHash"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["metaDataHash"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Name":
                     Program.db.RunQuery(dbSP.UpdateName,
-                        dgMain.Rows[e.RowIndex].Cells["name"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["name"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Reserve":
                     Program.db.RunQuery(dbSP.UpdateReserve,
-                        dgMain.Rows[e.RowIndex].Cells["reserve"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["reserve"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "Total":
                     Program.db.RunQuery(dbSP.UpdateTotal,
-                        dgMain.Rows[e.RowIndex].Cells["total"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["total"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "UnitName":
                     Program.db.RunQuery(dbSP.UpdateUnitName,
-                        dgMain.Rows[e.RowIndex].Cells["unitName"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["unitName"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "URL":
                     Program.db.RunQuery(dbSP.UpdateUrl,
-                        dgMain.Rows[e.RowIndex].Cells["url"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["url"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "ArcJson":
                     Program.db.RunQuery(dbSP.UpdateArcJson,
-                        dgMain.Rows[e.RowIndex].Cells["arcJson"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["arcJson"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "FileLocation":
                     Program.db.RunQuery(dbSP.UpdateFileLocation,
-                        dgMain.Rows[e.RowIndex].Cells["fileLocation"].Value.ToString(),
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["fileLocation"].Value.ToString(),
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "MintAssetFlag":
                     Program.db.RunQuery(dbSP.UpdateMintStatus,
-                        dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.Equals(false) ? "0" : "1",
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["MintAssetFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "OptInFlag":
                     Program.db.RunQuery(dbSP.UpdateOptInStatus,
-                        dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value.Equals(false) ? "0" : "1",
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["OptInFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "TransferFlag":
                     Program.db.RunQuery(dbSP.UpdateTransferStatus,
-                        dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value.Equals(false) ? "0" : "1",
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["TransferFlag"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
                 case "DefaultFrozen":
                     Program.db.RunQuery(dbSP.UpdateDefaultFrozen,
-                        dgMain.Rows[e.RowIndex].Cells["DefaultFrozen"].Value.Equals(false) ? "0" : "1",
-                        dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                    dgMain.Rows[e.RowIndex].Cells["DefaultFrozen"].Value.Equals(false) ? "0" : "1",
+                    dgMain.Rows[e.RowIndex].Cells["id"].Value.ToString());
                     break;
             }
         }
@@ -397,7 +371,100 @@ namespace AlgoNFTMinter
             dgMain.Columns[5].Visible = false; //Hide freeze column
         }
 
-        private void btnImageLocation_Click(object sender, EventArgs e)
+        private void addBlankRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var Asset = new DBTools.NewAssetData
+            {
+
+            };
+
+            Program.db.AddRecord(Asset);
+            MessageBox.Show("Record Added!");
+            RefreshGrid();
+        }
+
+        private void setAllTrueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllMintStatus, "1");
+            RefreshGrid();
+        }
+
+        private void setAllFalseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllMintStatus, "0");
+            RefreshGrid();
+        }
+
+        private void setAllTrueToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllOptInStatus, "1");
+            RefreshGrid();
+        }
+
+        private void setAllFalseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllOptInStatus, "0");
+            RefreshGrid();
+        }
+
+        private void setAllTrueToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllTransferStatus, "1");
+            RefreshGrid();
+        }
+
+        private void setAllFalseToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Program.db.RunQuery(dbSP.UpdateAllTransferStatus, "0");
+            RefreshGrid();
+        }
+
+        private void refreshGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RefreshGrid();
+        }
+
+        private void clearTablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to clear the table?", "Clear Table", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Program.db.TruncateTable("NewAssetData");
+                RefreshGrid();
+            }
+            else return;
+        }
+
+        private void deleteHighlightedRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you delete the highlighted record?", "Delete Record", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                var id = dgMain.Rows[dgMain.CurrentCell.RowIndex].Cells["id"].Value.ToString();
+                Program.db.DeleteRecord(id);
+                MessageBox.Show("Record Deleted!");
+                RefreshGrid();
+            }
+            else return;
+        }
+
+        private void importCSVTraitDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (txtbxUnitName.Text.Length < 1)
+            {
+                MessageBox.Show("Enter Unit Name");
+                return;
+            }
+            if (txtboxAssetName.Text.Length < 1)
+            {
+                MessageBox.Show("Enter Asset Name");
+                return;
+            }
+
+            ImportCSVFile();
+        }
+
+        private void selectImageFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var results = Program.db.RetrieveData(dbSP.GetFileLocation);
             if (results.Count > 0)
@@ -410,11 +477,12 @@ namespace AlgoNFTMinter
                     {
                         filePath = openFolderDialog.SelectedPath;
                     }
+                    else return;
                 }
                 var filesToProcess = System.IO.Directory.GetFiles(filePath, "*.png");
                 if (results.Count != filesToProcess.Length) { MessageBox.Show("File count does not match trait count. Please review!"); return; }
                 int i = 0;
-                foreach(NewAssetData asset in results)
+                foreach (NewAssetData asset in results)
                 {
                     asset.FileLocation = filesToProcess[i];
                     Program.db.UpdateRecord(asset);
@@ -423,41 +491,6 @@ namespace AlgoNFTMinter
                 MessageBox.Show("Complete!");
                 RefreshGrid();
             }
-           
-        }
-
-        private void btnUpdateTrue_Click(object sender, EventArgs e)
-        {
-            if (radioMint.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllMintStatus, "1");
-            }
-            else if (radioOptIn.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllOptInStatus, "1");
-            }
-            else if (radioTransfer.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllTransferStatus, "1");
-            }
-            RefreshGrid();
-        }
-
-        private void btnUpdateFalse_Click(object sender, EventArgs e)
-        {
-            if (radioMint.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllMintStatus, "0");
-            }
-            else if (radioOptIn.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllOptInStatus, "0");
-            }
-            else if (radioTransfer.Checked)
-            {
-                Program.db.RunQuery(dbSP.UpdateAllTransferStatus, "0");
-            }
-            RefreshGrid();
         }
     }
 }

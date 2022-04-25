@@ -30,58 +30,33 @@ namespace AlgoNFTMinter
         private void InitializeComponent()
         {
             this.panelMain = new System.Windows.Forms.Panel();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.tsMenuItemMintAssets = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
             // 
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(0, 24);
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1509, 637);
+            this.panelMain.Size = new System.Drawing.Size(2278, 1102);
             this.panelMain.TabIndex = 1;
-            // 
-            // menuStrip
-            // 
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsMenuItemMintAssets});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1509, 24);
-            this.menuStrip.TabIndex = 2;
-            this.menuStrip.Text = "menuStrip";
-            this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
-            // 
-            // tsMenuItemMintAssets
-            // 
-            this.tsMenuItemMintAssets.Name = "tsMenuItemMintAssets";
-            this.tsMenuItemMintAssets.Size = new System.Drawing.Size(80, 20);
-            this.tsMenuItemMintAssets.Text = "Mint Assets";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1509, 661);
+            this.ClientSize = new System.Drawing.Size(2278, 1102);
             this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.menuStrip);
-            this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "Algo NFT Minter";
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem tsMenuItemMintAssets;
     }
 }
 

@@ -16,22 +16,9 @@ namespace AlgoNFTMinter
         public MainForm()
         {
             InitializeComponent();
+            panelMain.Controls.Add(new MintAssets());
         }
 
-        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            panelMain.Controls.Clear();
-
-             if (e.ClickedItem.Text == "Mint Assets")
-            {
-                panelMain.Controls.Add(new MintAssets());
-            }
-            else if (e.ClickedItem.Text == "Messaging")
-            {
-                panelMain.Controls.Add(new Messaging());
-            }
-
-        }
     }
 
 }
