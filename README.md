@@ -1,9 +1,9 @@
 # AlgoNFTMinter
 ![image](https://user-images.githubusercontent.com/77548895/165179792-6c41b9c0-d247-4e74-a7ec-0742477cdfca.png)
 
-***Note: This readme is a WIP***
+***Note: I am no longer actively updating this repo. I started working on this application in September 2021. By now, there are more powerful web apps for minting Algo NFTs. I am leaving this repo up as a reference for those using the Algorand C# SDK ***
 
-I created this application to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. This initial buildout is specific for minting with ARC69 - trait data must be in CSV format. 
+This application was created to give Algorand NFT creators a desktop tool with a UI to easily manage, mint, and update their NFTs. This initial buildout is specific for minting with ARC69 - trait data must be in CSV format. 
 
 Services provided as of 3/11: Batch minting (with ARC69), opt-ins, and transfers. Batch Pinata uploads  
 WIP: batch updating ARC69
